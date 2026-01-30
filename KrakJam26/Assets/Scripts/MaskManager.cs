@@ -1,73 +1,36 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class MaskStateManager : MonoBehaviour
 {
-    public static MaskStateManager Instance { get; private set; }
+	public static MaskStateManager Instance { get; private set; }
 
-    public enum MaskType
-    {
-        SILENT,
-        DEAF,
-        BLIND
-    }
+	public event Action<MaskType> OnMaskChangeStartedEvent;
+	public event Action<MaskType> OnMaskChangedEvent;
 
-    public MaskType CurrentMask { get; private set; } = MaskType.SILENT;
+	public MaskType CurrentMask { get; private set; } = MaskType.None;
 
-    [SerializeField] private InputActionReference maskSilentAction;
-    [SerializeField] private InputActionReference maskDeafAction;
-    [SerializeField] private InputActionReference maskBlindAction;
+	private void Awake()
+	{
+		if (Instance != null && Instance != this)
+		{
+			Destroy(gameObject);
+			return;
+		}
 
-    public event Action<MaskType> OnMaskChanged;
+		Instance = this;
+		DontDestroyOnLoad(gameObject);
+	}
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+	public void ChangeMask(MaskType newMask)
+	{
+		if (newMask == CurrentMask)
+		{
+			return;
+		}
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
-
-    private void OnEnable()
-    {
-        if (maskSilentAction != null)
-            maskSilentAction.action.performed += ctx => ActivateMask(MaskType.SILENT);
-
-        if (maskDeafAction != null)
-            maskDeafAction.action.performed += ctx => ActivateMask(MaskType.DEAF);
-
-        if (maskBlindAction != null)
-            maskBlindAction.action.performed += ctx => ActivateMask(MaskType.BLIND);
-    }
-
-    private void OnDisable()
-    {
-        if (maskSilentAction != null)
-            maskSilentAction.action.performed -= ctx => ActivateMask(MaskType.SILENT);
-
-        if (maskDeafAction != null)
-            maskDeafAction.action.performed -= ctx => ActivateMask(MaskType.DEAF);
-
-        if (maskBlindAction != null)
-            maskBlindAction.action.performed -= ctx => ActivateMask(MaskType.BLIND);
-    }
-
-    private void ActivateMask(MaskType mask)
-    {
-        if (CurrentMask == mask) return;
-
-        CurrentMask = mask;
-        Debug.Log($"Mask changed to: {CurrentMask}");
-
-        OnMaskChanged?.Invoke(CurrentMask);
-    }
-    
-    public bool IsSilent() => CurrentMask == MaskType.SILENT;
-    public bool IsDeaf() => CurrentMask == MaskType.DEAF;
-    public bool IsBlind() => CurrentMask == MaskType.BLIND;
+		OnMaskChangeStartedEvent?.Invoke(newMask);
+		// Need to animate mask changing for some time, then after that notify that the mask has changed.
+		// Swap mask and call OnMaskChangedEvent after animation is done.
+	}
 }
