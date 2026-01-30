@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 8942016449018407114}
   - component: {fileID: 4065421619712027309}
   - component: {fileID: 2389619171296502767}
+  - component: {fileID: 7713535979619695411}
   m_Layer: 5
-  m_Name: Button
+  m_Name: MaskInventoryObject_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,11 +116,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 4065421619712027309}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7713535979619695411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121970474328277500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cefb8143e080174eb32b2941a72f1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MaskInventoryObject
 --- !u!1 &2040463507802069103
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +295,7 @@ GameObject:
   - component: {fileID: 2389712303919627126}
   - component: {fileID: 785324061510587932}
   - component: {fileID: 3917920509679383045}
+  - component: {fileID: 4816401252410322521}
   m_Layer: 5
   m_Name: MaskPanel
   m_TagString: Untagged
@@ -374,6 +388,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &4816401252410322521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4624114165253710254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152f3d06a2d103443886b9b1d93ec98e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MaskInventorySwitcher
+  _playerController: {fileID: 0}
+  _mask1: {fileID: 7776355311511847237}
+  _mask2: {fileID: 7713535979619695411}
 --- !u!1 &4860404955110677813
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,8 +622,9 @@ GameObject:
   - component: {fileID: 9037162001899995533}
   - component: {fileID: 7736559807582886146}
   - component: {fileID: 7751563976280006410}
+  - component: {fileID: 7776355311511847237}
   m_Layer: 5
-  m_Name: Button
+  m_Name: MaskInventoryObject_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -696,8 +726,20 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 7736559807582886146}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7776355311511847237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6376798123972563903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cefb8143e080174eb32b2941a72f1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MaskInventoryObject

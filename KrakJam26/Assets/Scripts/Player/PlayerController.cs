@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
+using System;
 
 public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 {
+	public event Action OnWearSelectedMaskEvent;
+	public event Action OnChangeMaskEvent;
+
 	[SerializeField]
 	private CinemachineCamera _playerCamera;
 
@@ -25,12 +29,12 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 
 	public void OnWearSelectedMask(InputAction.CallbackContext context)
 	{
-		MaskStateManager.Instance.ChangeMask(MaskType.Silent);
+		OnWearSelectedMaskEvent?.Invoke();
 	}
 
 	public void OnChangeMask(InputAction.CallbackContext context)
 	{
-		throw new System.NotImplementedException();
+		OnChangeMaskEvent?.Invoke();
 	}
 
 	public void OnShout(InputAction.CallbackContext context)
