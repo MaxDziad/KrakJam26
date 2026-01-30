@@ -1,22 +1,25 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class MaskStateManager : MonoBehaviour
 {
     public static MaskStateManager Instance { get; private set; }
 
-    public bool MaskSilent { get; private set; } = true;
-    public bool MaskDeaf { get; private set; } = true;
-    public bool MaskBlind { get; private set; } = true;
+    public enum MaskType
+    {
+        SILENT,
+        DEAF,
+        BLIND
+    }
+
+    public MaskType CurrentMask { get; private set; } = MaskType.SILENT;
 
     [SerializeField] private InputActionReference maskSilentAction;
     [SerializeField] private InputActionReference maskDeafAction;
     [SerializeField] private InputActionReference maskBlindAction;
 
-    public UnityEvent OnMaskSilentActivated;
-    public UnityEvent OnMaskDeafActivated;
-    public UnityEvent OnMaskBlindActivated;
+    public event Action<MaskType> OnMaskChanged;
 
     private void Awake()
     {
@@ -33,60 +36,38 @@ public class MaskStateManager : MonoBehaviour
     private void OnEnable()
     {
         if (maskSilentAction != null)
-            maskSilentAction.action.performed += OnMaskSilentInput;
+            maskSilentAction.action.performed += ctx => ActivateMask(MaskType.SILENT);
 
         if (maskDeafAction != null)
-            maskDeafAction.action.performed += OnMaskDeafInput;
+            maskDeafAction.action.performed += ctx => ActivateMask(MaskType.DEAF);
 
         if (maskBlindAction != null)
-            maskBlindAction.action.performed += OnMaskBlindInput;
+            maskBlindAction.action.performed += ctx => ActivateMask(MaskType.BLIND);
     }
 
     private void OnDisable()
     {
         if (maskSilentAction != null)
-            maskSilentAction.action.performed -= OnMaskSilentInput;
+            maskSilentAction.action.performed -= ctx => ActivateMask(MaskType.SILENT);
 
         if (maskDeafAction != null)
-            maskDeafAction.action.performed -= OnMaskDeafInput;
+            maskDeafAction.action.performed -= ctx => ActivateMask(MaskType.DEAF);
 
         if (maskBlindAction != null)
-            maskBlindAction.action.performed -= OnMaskBlindInput;
+            maskBlindAction.action.performed -= ctx => ActivateMask(MaskType.BLIND);
     }
 
-    private void OnMaskSilentInput(InputAction.CallbackContext ctx)
-        => ActivateMaskSilent();
-
-    private void OnMaskDeafInput(InputAction.CallbackContext ctx)
-        => ActivateMaskDeaf();
-
-    private void OnMaskBlindInput(InputAction.CallbackContext ctx)
-        => ActivateMaskBlind();
-
-    private void ActivateMaskSilent()
+    private void ActivateMask(MaskType mask)
     {
-        SetMasks(false, true, true);
-        OnMaskSilentActivated?.Invoke();
-    }
+        if (CurrentMask == mask) return;
 
-    private void ActivateMaskDeaf()
-    {
-        SetMasks(true, false, true);
-        OnMaskDeafActivated?.Invoke();
-    }
+        CurrentMask = mask;
+        Debug.Log($"Mask changed to: {CurrentMask}");
 
-    private void ActivateMaskBlind()
-    {
-        SetMasks(true, true, false);
-        OnMaskBlindActivated?.Invoke();
+        OnMaskChanged?.Invoke(CurrentMask);
     }
-
-    private void SetMasks(bool silent, bool deaf, bool blind)
-    {
-        MaskSilent = silent;
-        MaskDeaf = deaf;
-        MaskBlind = blind;
-
-        Debug.Log($"Masks => Silent:{MaskSilent} Deaf:{MaskDeaf} Blind:{MaskBlind}");
-    }
+    
+    public bool IsSilent() => CurrentMask == MaskType.SILENT;
+    public bool IsDeaf() => CurrentMask == MaskType.DEAF;
+    public bool IsBlind() => CurrentMask == MaskType.BLIND;
 }
