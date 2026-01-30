@@ -100,6 +100,33 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""WearSelectedMask"",
+                    ""type"": ""Button"",
+                    ""id"": ""8d9c9c7e-fdea-46df-b549-2eeb93a04dfe"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeMask"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8d0945b-a848-4bdb-9aa1-139892c39254"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shout"",
+                    ""type"": ""Button"",
+                    ""id"": ""6cca0ee8-3002-4fe1-8def-47450424de64"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -157,6 +184,39 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e168762-d604-4a16-aa73-7475cfa0b608"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";PC"",
+                    ""action"": ""WearSelectedMask"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f684743d-41a1-4eaa-8600-fb8620e2da70"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";PC"",
+                    ""action"": ""ChangeMask"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0cdcd845-1b4b-42d5-a744-902be776a213"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shout"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -183,6 +243,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
+        m_Gameplay_WearSelectedMask = m_Gameplay.FindAction("WearSelectedMask", throwIfNotFound: true);
+        m_Gameplay_ChangeMask = m_Gameplay.FindAction("ChangeMask", throwIfNotFound: true);
+        m_Gameplay_Shout = m_Gameplay.FindAction("Shout", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -264,6 +327,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Move;
+    private readonly InputAction m_Gameplay_WearSelectedMask;
+    private readonly InputAction m_Gameplay_ChangeMask;
+    private readonly InputAction m_Gameplay_Shout;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -279,6 +345,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Move".
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/WearSelectedMask".
+        /// </summary>
+        public InputAction @WearSelectedMask => m_Wrapper.m_Gameplay_WearSelectedMask;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/ChangeMask".
+        /// </summary>
+        public InputAction @ChangeMask => m_Wrapper.m_Gameplay_ChangeMask;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Shout".
+        /// </summary>
+        public InputAction @Shout => m_Wrapper.m_Gameplay_Shout;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -308,6 +386,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @WearSelectedMask.started += instance.OnWearSelectedMask;
+            @WearSelectedMask.performed += instance.OnWearSelectedMask;
+            @WearSelectedMask.canceled += instance.OnWearSelectedMask;
+            @ChangeMask.started += instance.OnChangeMask;
+            @ChangeMask.performed += instance.OnChangeMask;
+            @ChangeMask.canceled += instance.OnChangeMask;
+            @Shout.started += instance.OnShout;
+            @Shout.performed += instance.OnShout;
+            @Shout.canceled += instance.OnShout;
         }
 
         /// <summary>
@@ -322,6 +409,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @WearSelectedMask.started -= instance.OnWearSelectedMask;
+            @WearSelectedMask.performed -= instance.OnWearSelectedMask;
+            @WearSelectedMask.canceled -= instance.OnWearSelectedMask;
+            @ChangeMask.started -= instance.OnChangeMask;
+            @ChangeMask.performed -= instance.OnChangeMask;
+            @ChangeMask.canceled -= instance.OnChangeMask;
+            @Shout.started -= instance.OnShout;
+            @Shout.performed -= instance.OnShout;
+            @Shout.canceled -= instance.OnShout;
         }
 
         /// <summary>
@@ -382,5 +478,26 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "WearSelectedMask" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnWearSelectedMask(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ChangeMask" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnChangeMask(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Shout" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShout(InputAction.CallbackContext context);
     }
 }

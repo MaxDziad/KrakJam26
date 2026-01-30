@@ -14,6 +14,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "WearSelectedMask",
+                    "type": "Button",
+                    "id": "8d9c9c7e-fdea-46df-b549-2eeb93a04dfe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeMask",
+                    "type": "Button",
+                    "id": "d8d0945b-a848-4bdb-9aa1-139892c39254",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Shout",
+                    "type": "Button",
+                    "id": "6cca0ee8-3002-4fe1-8def-47450424de64",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -71,6 +98,39 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "3e168762-d604-4a16-aa73-7475cfa0b608",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";PC",
+                    "action": "WearSelectedMask",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f684743d-41a1-4eaa-8600-fb8620e2da70",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";PC",
+                    "action": "ChangeMask",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0cdcd845-1b4b-42d5-a744-902be776a213",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shout",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -23,6 +23,21 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 		_movementInput.Normalize();
 	}
 
+	public void OnWearSelectedMask(InputAction.CallbackContext context)
+	{
+		MaskStateManager.Instance.ChangeMask(MaskType.Silent);
+	}
+
+	public void OnChangeMask(InputAction.CallbackContext context)
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public void OnShout(InputAction.CallbackContext context)
+	{
+		throw new System.NotImplementedException();
+	}
+
 	public void Start()
 	{
 		_inputActions = new InputActions();
