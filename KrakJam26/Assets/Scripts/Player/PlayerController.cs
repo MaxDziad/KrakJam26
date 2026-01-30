@@ -1,18 +1,24 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Cinemachine;
 
 public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 {
+	[SerializeField]
+	private CinemachineCamera _playerCamera;
+
 	[SerializeField]
 	private float _playerSpeed = 5;
 
 	private Vector2 _movementInput = Vector2.zero;
 	private InputActions _inputActions;
 	private CharacterController _characterController;
+	private Vector3 _movementDirection;
+
+	private Transform CameraTransform => _playerCamera.transform;
 
 	public void OnMove(InputAction.CallbackContext context)
 	{
-		Debug.Log("OnMove called");
 		_movementInput = context.ReadValue<Vector2>();
 		_movementInput.Normalize();
 	}
@@ -30,7 +36,16 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 	{
 		if (_movementInput != Vector2.zero)
 		{
-			Vector3 movement = new Vector3(_movementInput.x, 0, _movementInput.y) * _playerSpeed * Time.fixedDeltaTime;
+			Vector3 camForward = Vector3.ProjectOnPlane(CameraTransform.forward, Vector3.up).normalized;
+			Vector3 camRight = Vector3.ProjectOnPlane(CameraTransform.right, Vector3.up).normalized;
+			_movementDirection = camRight * _movementInput.x + camForward * _movementInput.y;
+
+			if (_movementDirection.sqrMagnitude > 1f)
+			{
+				_movementDirection.Normalize();
+			}
+
+			Vector3 movement = _movementDirection * _playerSpeed * Time.fixedDeltaTime;
 			_characterController.Move(movement);
 		}
 	}
