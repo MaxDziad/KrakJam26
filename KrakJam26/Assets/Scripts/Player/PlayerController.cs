@@ -14,12 +14,17 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 	[SerializeField]
 	private float _playerSpeed = 5;
 
+	[SerializeField]
+	private Animator playerAnimator;
+
 	private Vector2 _movementInput = Vector2.zero;
 	private InputActions _inputActions;
 	private CharacterController _characterController;
 	private Vector3 _movementDirection;
 
 	private Transform CameraTransform => _playerCamera.transform;
+
+
 
 	public void OnMove(InputAction.CallbackContext context)
 	{
@@ -66,6 +71,16 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 
 			Vector3 movement = _movementDirection * _playerSpeed * Time.fixedDeltaTime;
 			_characterController.Move(movement);
+
+			playerAnimator.SetBool("isMoving", true);
+			playerAnimator.SetFloat("MoveX", _movementInput.x);
+			playerAnimator.SetFloat("MoveY", _movementInput.y);
+		}
+		else
+		{
+			playerAnimator.SetBool("isMoving", false);
+			playerAnimator.SetFloat("MoveX", 0f);
+			playerAnimator.SetFloat("MoveY", 0f);
 		}
 	}
 
