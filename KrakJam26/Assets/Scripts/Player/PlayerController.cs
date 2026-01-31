@@ -6,7 +6,8 @@ using System;
 public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 {
 	public event Action OnWearSelectedMaskEvent;
-	public event Action OnChangeMaskEvent;
+	public event Action OnSelectNextMaskEvent;
+	public event Action<int> OnSelectSpecificMaskEvent;
 
 	[SerializeField]
 	private CinemachineCamera _playerCamera;
@@ -32,26 +33,48 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 
 	public void OnWearSelectedMask(InputAction.CallbackContext context)
 	{
-		if (!context.started)
+		if (context.started)
 		{
-			return;
+			OnWearSelectedMaskEvent?.Invoke();
 		}
-		OnWearSelectedMaskEvent?.Invoke();
 	}
 
 	public void OnChangeMask(InputAction.CallbackContext context)
 	{
-		if (!context.started)
+		if (context.started)
 		{
-			return;
+			OnSelectNextMaskEvent?.Invoke();
 		}
-		OnChangeMaskEvent?.Invoke();
 	}
 
 	public void OnShout(InputAction.CallbackContext context)
 	{
 		throw new System.NotImplementedException();
 	}
+
+	public void OnWearMask1(InputAction.CallbackContext context)
+    {
+        if (context.started)
+		{
+			OnSelectSpecificMaskEvent?.Invoke(0);
+		}
+    }
+
+    public void OnWearMask2(InputAction.CallbackContext context)
+    {
+        if (context.started)
+		{
+			OnSelectSpecificMaskEvent?.Invoke(1);
+		}
+    }
+
+    public void OnWearMask3(InputAction.CallbackContext context)
+    {
+        if (context.started)
+		{
+			OnSelectSpecificMaskEvent?.Invoke(2);
+		}
+    }
 
 	private void Awake()
 	{

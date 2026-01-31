@@ -13,8 +13,9 @@ public class MaskInventorySwitcher : MonoBehaviour
 
 	private void OnEnable()
 	{
-		_playerController.OnChangeMaskEvent += OnChangeMask;
+		_playerController.OnSelectNextMaskEvent += OnChangeMask;
 		_playerController.OnWearSelectedMaskEvent += OnWearSelectedMask;
+		_playerController.OnSelectSpecificMaskEvent += OnWearSpecificMask;
 	}
 
 	private void Start()
@@ -43,6 +44,12 @@ public class MaskInventorySwitcher : MonoBehaviour
 		RefreshButtons();
 	}
 
+	private void OnWearSpecificMask(int index)
+	{
+		_selectedMaskIndex = index % _maskInventoryObjects.Length;
+		OnWearSelectedMask();
+	}
+
 	private void RefreshButtons()
 	{
 		for (int i = 0; i < _maskInventoryObjects.Length; i++)
@@ -64,8 +71,9 @@ public class MaskInventorySwitcher : MonoBehaviour
 	{
 		if (_playerController != null)
 		{
-			_playerController.OnChangeMaskEvent -= OnChangeMask;
+			_playerController.OnSelectNextMaskEvent -= OnChangeMask;
 			_playerController.OnWearSelectedMaskEvent -= OnWearSelectedMask;
+			_playerController.OnSelectSpecificMaskEvent -= OnWearSpecificMask;
 		}
 	}
 }
