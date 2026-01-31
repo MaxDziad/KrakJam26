@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SimpleLitGlobalSphereMasked
+  m_Name: SimpleLitGlobalGeometryMasked
   m_Shader: {fileID: -6465566751694194690, guid: ffb675e75366b35b386a9bea1f64ce51, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -103,6 +103,8 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _ConeRadiusMultiplier: 0.86
+    - _ConeRadiusPower: 0.8
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1

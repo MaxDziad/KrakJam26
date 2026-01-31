@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SimpleLitGlobalSphereMasked_StickingOut
+  m_Name: SimpleLitGlobalGeometryMasked_StickingOut
   m_Shader: {fileID: -6465566751694194690, guid: ffb675e75366b35b386a9bea1f64ce51, type: 3}
   m_Parent: {fileID: 2100000, guid: 0a2d6b9e7678a85c88bf6f0e5adc7220, type: 2}
   m_ModifiedSerializedProperties: 0
