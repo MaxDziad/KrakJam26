@@ -24,8 +24,6 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 
 	private Transform CameraTransform => _playerCamera.transform;
 
-
-
 	public void OnMove(InputAction.CallbackContext context)
 	{
 		_movementInput = context.ReadValue<Vector2>();
@@ -47,13 +45,15 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 		throw new System.NotImplementedException();
 	}
 
-	public void Start()
+	private void Awake()
 	{
 		_inputActions = new InputActions();
 		_inputActions.Gameplay.SetCallbacks(this);
 		_inputActions.Gameplay.Enable();
 
 		_characterController = GetComponent<CharacterController>();
+
+		PlayerSystemManager.Instance.RegisterSelf(this);
 	}
 
 	public void FixedUpdate()
