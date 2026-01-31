@@ -41,6 +41,6 @@ Material:
     m_Floats:
     - _SphereMaskRadiusOffset: -0.78
     m_Colors:
-    - _Color: {r: 0.4992212, g: 0.4992212, b: 0.4992212, a: 1}
+    - _Color: {r: 0.33918333, g: 0.33918333, b: 0.33918333, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

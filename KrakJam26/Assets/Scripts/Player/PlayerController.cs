@@ -32,11 +32,19 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 
 	public void OnWearSelectedMask(InputAction.CallbackContext context)
 	{
+		if (!context.started)
+		{
+			return;
+		}
 		OnWearSelectedMaskEvent?.Invoke();
 	}
 
 	public void OnChangeMask(InputAction.CallbackContext context)
 	{
+		if (!context.started)
+		{
+			return;
+		}
 		OnChangeMaskEvent?.Invoke();
 	}
 
