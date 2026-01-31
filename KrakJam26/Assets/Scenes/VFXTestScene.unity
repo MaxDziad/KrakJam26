@@ -820,6 +820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundWave3D
       objectReference: {fileID: 0}
+    - target: {fileID: 1579162732906669871, guid: c1da7f553da979258b00fcaabe3215eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1945926627961950507, guid: c1da7f553da979258b00fcaabe3215eb, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
