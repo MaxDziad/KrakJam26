@@ -5,136 +5,159 @@ using UnityEngine.UI;
 
 public class MaskInventorySwitcher : MonoBehaviour
 {
-	[SerializeField]
-	private PlayerController _playerController;
+    [SerializeField]
+    private PlayerController _playerController;
 
-	[SerializeField]
-	private MaskInventoryObject[] _maskInventoryObjects;
+    [SerializeField]
+    private MaskInventoryObject[] _maskInventoryObjects;
 
-	[SerializeField]
-	private Image _maskPortraitImage;
+    [SerializeField]
+    private Image _maskPortraitImage;
 
-	[SerializeField]
-	private TweenSettings<float> _maskPortraitImageDissolveSettings;
+    [SerializeField]
+    private TweenSettings<float> _maskPortraitImageDissolveSettings;
 
-	private int _activeMaskIndex = -1;
-	private int _selectedMaskIndex = 0;
-	private Material _originalMaskPortraitMaterial;
-	private Tween _maskPortraitDissolveTween;
+    private int _activeMaskIndex = -1;
+    private int _selectedMaskIndex = 0;
+    private Material _originalMaskPortraitMaterial;
+    private Tween _maskPortraitDissolveTween;
 
-	private void OnEnable()
-	{
-		_playerController.OnSelectNextMaskEvent += OnSelectNextMask;
-		_playerController.OnWearSelectedMaskEvent += OnWearSelectedMask;
-		_playerController.OnSelectSpecificMaskEvent += OnWearSpecificMask;
-		_originalMaskPortraitMaterial = _maskPortraitImage.material;
-		_maskPortraitImage.material = new Material(_originalMaskPortraitMaterial);
-	}
+    private void OnEnable()
+    {
+        _playerController.OnSelectNextMaskEvent += OnSelectNextMask;
+        _playerController.OnWearSelectedMaskEvent += OnWearSelectedMask;
+        _playerController.OnSelectSpecificMaskEvent += OnWearSpecificMask;
 
-	private void Start()
-	{
-		MaskSystemManager.Instance.OnMaskChangedEvent += OnMaskChanged;
-		MaskSystemManager.Instance.OnMaskChangeStartedEvent += OnMaskChangeStarted;
-		RefreshButtons();
-	}
+        _originalMaskPortraitMaterial = _maskPortraitImage.material;
+        _maskPortraitImage.material = new Material(_originalMaskPortraitMaterial);
+    }
 
-	private void OnMaskChangeStarted(MaskType type)
-	{
-		_maskPortraitDissolveTween.Stop();
-		_maskPortraitDissolveTween = Tween.MaterialProperty(
-			_maskPortraitImage.material, 
-			Shader.PropertyToID("_Value"), 
-			_maskPortraitImageDissolveSettings.WithDirection(true)
-		).OnComplete(() => OnMaskPortraitFadedOut(type));
-	}
+    private void Start()
+    {
+        MaskSystemManager.Instance.OnMaskChangedEvent += OnMaskChanged;
+        MaskSystemManager.Instance.OnMaskChangeStartedEvent += OnMaskChangeStarted;
+        RefreshButtons();
+    }
 
-	private void OnMaskPortraitFadedOut(MaskType type)
-	{
-		_maskPortraitImage.sprite = MaskSystemManager.Instance.MasksData.GetMaskSprite(type);
-		_maskPortraitDissolveTween = Tween.MaterialProperty(
-			_maskPortraitImage.material, 
-			Shader.PropertyToID("_Value"), 
-			_maskPortraitImageDissolveSettings.WithDirection(false)
-		);
-	}
+    private void OnMaskChangeStarted(MaskType type)
+    {
+        if (_maskPortraitDissolveTween.isAlive)
+            _maskPortraitDissolveTween.Stop();
 
-	private void OnMaskChanged(MaskType type)
-	{
-		_maskPortraitImage.gameObject.SetActive(true);
-	}
+        _maskPortraitDissolveTween = Tween.MaterialProperty(
+            _maskPortraitImage.material,
+            Shader.PropertyToID("_Value"),
+            _maskPortraitImageDissolveSettings.WithDirection(true)
+        ).OnComplete(() => OnMaskPortraitFadedOut(type));
+    }
 
-	private void OnSelectNextMask()
-	{
-		for(int i = 0; i < 2; i++)
-		{
-			_selectedMaskIndex = (_selectedMaskIndex + 1) % _maskInventoryObjects.Length;
+    private void OnMaskPortraitFadedOut(MaskType type)
+    {
+        _maskPortraitImage.sprite = MaskSystemManager.Instance.MasksData.GetMaskSprite(type);
+        _maskPortraitDissolveTween = Tween.MaterialProperty(
+            _maskPortraitImage.material,
+            Shader.PropertyToID("_Value"),
+            _maskPortraitImageDissolveSettings.WithDirection(false)
+        );
+    }
 
-			if (_selectedMaskIndex != _activeMaskIndex)
-			{
-				break;
-			}
-		}
-		RefreshButtons();
-	}
+    private void OnMaskChanged(MaskType type)
+    {
+        _maskPortraitImage.gameObject.SetActive(true);
+    }
 
-	private void OnWearSelectedMask()
-	{
-		var targetType = _maskInventoryObjects[_selectedMaskIndex].MaskType;
+    private void OnSelectNextMask()
+    {
+        int startIndex = _selectedMaskIndex;
+        int count = _maskInventoryObjects.Length;
 
-		if (!MaskSystemManager.Instance.TryChangeMask(targetType))
-		{
-			return;
-		}
+        do
+        {
+            _selectedMaskIndex = (_selectedMaskIndex + 1) % count;
 
-		_activeMaskIndex = _selectedMaskIndex;
-		RefreshButtons();
-	}
+            if (_maskInventoryObjects[_selectedMaskIndex].IsUnlocked &&
+                _selectedMaskIndex != _activeMaskIndex)
+            {
+                RefreshButtons();
+                return;
+            }
 
-	private void OnWearSpecificMask(int index)
-	{
-		_selectedMaskIndex = index % _maskInventoryObjects.Length;
-		OnWearSelectedMask();
-		RefreshButtons();
-	}
+        } while (_selectedMaskIndex != startIndex);
 
-	private void RefreshButtons()
-	{
-		for (int i = 0; i < _maskInventoryObjects.Length; i++)
-		{
-			RefreshButtonState(i);
-		}
-	}
+    }
 
-	private void RefreshButtonState(int index)
-	{
-		_maskInventoryObjects[index].SetState(
-			index == _activeMaskIndex ? MaskInventoryObject.MaskInventoryState.Wearing :
-			index == _selectedMaskIndex ? MaskInventoryObject.MaskInventoryState.Selected : 
-			MaskInventoryObject.MaskInventoryState.Neutral
-		);
-	}
+    private void OnWearSelectedMask()
+    {
+        var maskObj = _maskInventoryObjects[_selectedMaskIndex];
 
-	private void OnDisable()
-	{
-		if (_playerController != null)
-		{
-			_playerController.OnSelectNextMaskEvent -= OnSelectNextMask;
-			_playerController.OnWearSelectedMaskEvent -= OnWearSelectedMask;
-			_playerController.OnSelectSpecificMaskEvent -= OnWearSpecificMask;
-		}
+        if (!maskObj.IsUnlocked)
+            return;
 
-		Destroy(_maskPortraitImage.material);
-		_maskPortraitImage.material = _originalMaskPortraitMaterial;
-		_originalMaskPortraitMaterial = null;
-	}
+        var targetType = maskObj.MaskType;
 
-	private void OnDestroy()
-	{
-		if (MaskSystemManager.Instance != null)
-		{
+        if (!MaskSystemManager.Instance.TryChangeMask(targetType))
+            return;
 
-			MaskSystemManager.Instance.OnMaskChangedEvent -= OnMaskChanged;
-			MaskSystemManager.Instance.OnMaskChangeStartedEvent -= OnMaskChangeStarted;
-		}
-	}
+        _activeMaskIndex = _selectedMaskIndex;
+        RefreshButtons();
+    }
+
+    private void OnWearSpecificMask(int index)
+    {
+        index %= _maskInventoryObjects.Length;
+
+        if (!_maskInventoryObjects[index].IsUnlocked)
+            return;
+
+        _selectedMaskIndex = index;
+        OnWearSelectedMask();
+    }
+
+    private void RefreshButtons()
+    {
+        for (int i = 0; i < _maskInventoryObjects.Length; i++)
+        {
+            RefreshButtonState(i);
+        }
+    }
+
+    private void RefreshButtonState(int index)
+    {
+        var obj = _maskInventoryObjects[index];
+
+        if (!obj.IsUnlocked)
+        {
+            obj.SetState(MaskInventoryObject.MaskInventoryState.Locked);
+            return;
+        }
+
+        obj.SetState(
+            index == _activeMaskIndex ? MaskInventoryObject.MaskInventoryState.Wearing :
+            index == _selectedMaskIndex ? MaskInventoryObject.MaskInventoryState.Selected :
+            MaskInventoryObject.MaskInventoryState.Neutral
+        );
+    }
+
+    private void OnDisable()
+    {
+        if (_playerController != null)
+        {
+            _playerController.OnSelectNextMaskEvent -= OnSelectNextMask;
+            _playerController.OnWearSelectedMaskEvent -= OnWearSelectedMask;
+            _playerController.OnSelectSpecificMaskEvent -= OnWearSpecificMask;
+        }
+
+        Destroy(_maskPortraitImage.material);
+        _maskPortraitImage.material = _originalMaskPortraitMaterial;
+        _originalMaskPortraitMaterial = null;
+    }
+
+    private void OnDestroy()
+    {
+        if (MaskSystemManager.Instance != null)
+        {
+            MaskSystemManager.Instance.OnMaskChangedEvent -= OnMaskChanged;
+            MaskSystemManager.Instance.OnMaskChangeStartedEvent -= OnMaskChangeStarted;
+        }
+    }
 }
