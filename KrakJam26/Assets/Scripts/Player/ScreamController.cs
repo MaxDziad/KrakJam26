@@ -5,6 +5,8 @@ public class ScreamController : MonoBehaviour
     [SerializeField] private GameObject screamProjectilePrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float projectileSpeed = 4f;
+    [SerializeField] private float cooldown = 2f;
+    private float cooldownTimer = 0f;
 
     private PlayerController playerController;
 
@@ -23,8 +25,17 @@ public class ScreamController : MonoBehaviour
         playerController.OnShoutEvent -= Shoot;
     }
 
+        private void Update()
+    {
+        if (cooldownTimer > 0f)
+            cooldownTimer -= Time.deltaTime;
+    }
+
+
     private void Shoot()
     {
+        if (cooldownTimer > 0f) return;
+
         Vector3 direction = playerController.screamDirection;
 
         GameObject projectile = Instantiate(
@@ -34,5 +45,7 @@ public class ScreamController : MonoBehaviour
         );
 
         projectile.GetComponent<ScreamProjectile>().Initialize(direction, projectileSpeed);
+
+        cooldownTimer = cooldown;
     }
 }
