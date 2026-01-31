@@ -6,9 +6,9 @@ using UnityEngine.Rendering.Universal;
 public class MaskVisuals : MonoBehaviour
 {
     [Header("Tween Settings")]
-    [SerializeField] private TweenSettings<float> blindTweenSettings;
-    [SerializeField] private TweenSettings<float> deafTweenSettings;
-    [SerializeField] private TweenSettings<float> muteTweenSettings;
+    [SerializeField] private TweenSettings blindTweenSettings;
+    [SerializeField] private TweenSettings deafTweenSettings;
+    [SerializeField] private TweenSettings muteTweenSettings;
 
     [Header("References")]
     [SerializeField] private FullScreenPassRendererFeature blindnessRenderPass;
@@ -53,10 +53,14 @@ public class MaskVisuals : MonoBehaviour
             visualSequence.Stop();
         }
 
+        float blindTarget = (targetMaskType is MaskType.Blind or MaskType.None) ? 1.0f : 0.0f;
+        float deafTarget = (targetMaskType is MaskType.Deaf or MaskType.None) ? 1.0f : 0.0f;
+        float muteTarget = (targetMaskType is MaskType.Silent or MaskType.None) ? 1.0f : 0.0f;
+
         visualSequence = Sequence.Create()
-            .Group(Tween.Custom(blindTweenSettings.WithDirection(maskType is MaskType.Blind), value => blindVisualState = value))
-            .Group(Tween.Custom(deafTweenSettings.WithDirection(maskType is MaskType.Deaf), value => deafVisualState = value))
-            .Group(Tween.Custom(muteTweenSettings.WithDirection(maskType is MaskType.Silent), value => muteVisualState = value))
+            .Group(Tween.Custom(new TweenSettings<float>(blindVisualState, blindTarget, blindTweenSettings), value => blindVisualState = value))
+            .Group(Tween.Custom(new TweenSettings<float>(deafVisualState, deafTarget, deafTweenSettings), value => deafVisualState = value))
+            .Group(Tween.Custom(new TweenSettings<float>(muteVisualState, muteTarget, muteTweenSettings), value => muteVisualState = value))
         .OnComplete(onComplete);
     }
 }

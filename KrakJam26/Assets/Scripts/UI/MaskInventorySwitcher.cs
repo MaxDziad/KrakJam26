@@ -6,43 +6,80 @@ public class MaskInventorySwitcher : MonoBehaviour
 	private PlayerController _playerController;
 
 	[SerializeField]
-	private MaskInventoryObject _mask1;
+	private MaskInventoryObject[] _maskInventoryObjects;
 
-	[SerializeField]
-	private MaskInventoryObject _mask2;
-
-	private MaskInventoryObject _currentSelectedMaskInventoryObject;
+	private int _activeMaskIndex = 0;
+	private int _selectedMaskIndex = 0;
 
 	private void OnEnable()
 	{
-		_playerController.OnChangeMaskEvent += OnChangeMask;
+		_playerController.OnSelectNextMaskEvent += OnChangeMask;
 		_playerController.OnWearSelectedMaskEvent += OnWearSelectedMask;
+		_playerController.OnSelectSpecificMaskEvent += OnWearSpecificMask;
 	}
 
 	private void Start()
 	{
-		_currentSelectedMaskInventoryObject = _mask1;
-		_currentSelectedMaskInventoryObject.SetButtonEnabled(true);
+		OnWearSelectedMask();
 	}
 
 	private void OnChangeMask()
 	{
-		_currentSelectedMaskInventoryObject.SetButtonEnabled(false);
-		_currentSelectedMaskInventoryObject = _currentSelectedMaskInventoryObject == _mask1 ? _mask2 : _mask1;
-		_currentSelectedMaskInventoryObject.SetButtonEnabled(true);
+		for(int i = 0; i < 2; i++)
+		{
+			_selectedMaskIndex = (_selectedMaskIndex + 1) % _maskInventoryObjects.Length;
+
+			if (_selectedMaskIndex != _activeMaskIndex)
+			{
+				break;
+			}
+		}
+		RefreshButtons();
 	}
 
 	private void OnWearSelectedMask()
 	{
-		// Handle wear selected mask
+		var targetType = _maskInventoryObjects[_selectedMaskIndex].MaskType;
+		if (!MaskStateManager.Instance.TryChangeMask(targetType))
+		{
+			return;
+		}
+
+		_activeMaskIndex = _selectedMaskIndex;
+		RefreshButtons();
+	}
+
+	private void OnWearSpecificMask(int index)
+	{
+		_selectedMaskIndex = index % _maskInventoryObjects.Length;
+		OnWearSelectedMask();
+		RefreshButtons();
+	}
+
+	private void RefreshButtons()
+	{
+		for (int i = 0; i < _maskInventoryObjects.Length; i++)
+		{
+			RefreshButtonState(i);
+		}
+	}
+
+	private void RefreshButtonState(int index)
+	{
+		_maskInventoryObjects[index].SetState(
+			index == _activeMaskIndex ? MaskInventoryObject.State.Used :
+			index == _selectedMaskIndex ? MaskInventoryObject.State.Selected : 
+			MaskInventoryObject.State.Neutral
+		);
 	}
 
 	private void OnDisable()
 	{
 		if (_playerController != null)
 		{
-			_playerController.OnChangeMaskEvent -= OnChangeMask;
+			_playerController.OnSelectNextMaskEvent -= OnChangeMask;
 			_playerController.OnWearSelectedMaskEvent -= OnWearSelectedMask;
+			_playerController.OnSelectSpecificMaskEvent -= OnWearSpecificMask;
 		}
 	}
 }

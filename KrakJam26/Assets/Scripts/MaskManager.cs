@@ -25,11 +25,11 @@ public class MaskStateManager : MonoBehaviour
 		maskVisuals = GetComponent<MaskVisuals>();
 	}
 
-	public void ChangeMask(MaskType newMask)
+	public bool TryChangeMask(MaskType newMask)
 	{
 		if (newMask == CurrentMask || maskVisuals.IsChangeInProgress)
 		{
-			return;
+			return false;
 		}
 
 		OnMaskChangeStartedEvent?.Invoke(newMask);
@@ -39,5 +39,7 @@ public class MaskStateManager : MonoBehaviour
 			CurrentMask = newMask;
 			OnMaskChangedEvent?.Invoke(newMask);
 		});
+
+		return true;
 	}
 }
