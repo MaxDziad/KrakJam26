@@ -53,9 +53,9 @@ public class MaskVisuals : MonoBehaviour
             visualSequence.Stop();
         }
 
-        float blindTarget = (targetMaskType == MaskType.Blind) ? 1.0f : 0.0f;
-        float deafTarget = (targetMaskType == MaskType.Deaf) ? 1.0f : 0.0f;
-        float muteTarget = (targetMaskType == MaskType.Silent) ? 1.0f : 0.0f;
+        float blindTarget = (targetMaskType is MaskType.Blind or MaskType.None) ? 1.0f : 0.0f;
+        float deafTarget = (targetMaskType is MaskType.Deaf or MaskType.None) ? 1.0f : 0.0f;
+        float muteTarget = (targetMaskType is MaskType.Silent or MaskType.None) ? 1.0f : 0.0f;
 
         visualSequence = Sequence.Create()
             .Group(Tween.Custom(new TweenSettings<float>(blindVisualState, blindTarget, blindTweenSettings), value => blindVisualState = value))
