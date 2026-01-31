@@ -125,4 +125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b7414f2e9b4df45a7a1d50d57b4220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreamProjectile
-  lifetime: 2
+  lifetime: 20
