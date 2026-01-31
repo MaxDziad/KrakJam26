@@ -65,14 +65,35 @@ public class MaskVisuals : MonoBehaviour
         var maskTexture = MaskSystemManager.Instance.MasksData.GetMaskSprite(targetMaskType).texture;
         blindnessRenderPass.passMaterial.SetTexture("_Mask", maskTexture);
 
-        float blindTarget = (targetMaskType is MaskType.Blind or MaskType.None) ? 1.0f : 0.0f;
-        float deafTarget = (targetMaskType is MaskType.Deaf or MaskType.None) ? 1.0f : 0.0f;
-        float muteTarget = (targetMaskType is MaskType.Silent or MaskType.None) ? 1.0f : 0.0f;
+        float blindTarget = GetBlindTarget(targetMaskType);
+        float deafTarget = GetDeafTarget(targetMaskType);
+        float muteTarget = GetMuteTarget(targetMaskType);
 
         visualSequence = Sequence.Create()
             .Chain(Tween.Custom(new TweenSettings<float>(1.0f, blindTarget, blindTweenSettings), value => blindVisualState = value))
             .Group(Tween.Custom(new TweenSettings<float>(1.0f, deafTarget, deafTweenSettings), value => deafVisualState = value))
             .Group(Tween.Custom(new TweenSettings<float>(1.0f, muteTarget, muteTweenSettings), value => muteVisualState = value))
         .OnComplete(onComplete);
+    }
+
+    private float GetBlindTarget(MaskType maskType)
+    {
+        return (maskType is MaskType.Blind or MaskType.None) ? 1.0f : 0.0f;
+    }
+
+    private float GetDeafTarget(MaskType maskType)
+    {
+        return maskType switch
+        {
+            MaskType.Deaf => 1.0f,
+            MaskType.None => 1.0f,
+            not MaskType.Blind => 0.5f,
+            _ => 0.0f,
+        };
+    }
+
+    private float GetMuteTarget(MaskType maskType)
+    {
+        return (maskType is MaskType.Silent or MaskType.None) ? 1.0f : 0.0f;
     }
 }
