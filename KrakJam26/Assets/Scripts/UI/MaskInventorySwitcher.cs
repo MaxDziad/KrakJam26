@@ -39,8 +39,13 @@ public class MaskInventorySwitcher : MonoBehaviour
 
 	private void OnWearSelectedMask()
 	{
+		var targetType = _maskInventoryObjects[_selectedMaskIndex].MaskType;
+		if (!MaskStateManager.Instance.TryChangeMask(targetType))
+		{
+			return;
+		}
+
 		_activeMaskIndex = _selectedMaskIndex;
-		MaskStateManager.Instance.ChangeMask(_maskInventoryObjects[_activeMaskIndex].MaskType);
 		RefreshButtons();
 	}
 
@@ -48,6 +53,7 @@ public class MaskInventorySwitcher : MonoBehaviour
 	{
 		_selectedMaskIndex = index % _maskInventoryObjects.Length;
 		OnWearSelectedMask();
+		RefreshButtons();
 	}
 
 	private void RefreshButtons()
