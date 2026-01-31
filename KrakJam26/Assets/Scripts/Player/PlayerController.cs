@@ -1,12 +1,13 @@
+using System;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Unity.Cinemachine;
-using System;
 
 public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 {
 	public event Action OnWearSelectedMaskEvent;
 	public event Action OnShoutEvent;
+	public event Action OnInteractEvent;
 	public event Action OnSelectNextMaskEvent;
 	public event Action<int> OnSelectSpecificMaskEvent;
 
@@ -57,28 +58,36 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 	}
 
 	public void OnWearMask1(InputAction.CallbackContext context)
-    {
-        if (context.started)
+	{
+		if (context.started)
 		{
 			OnSelectSpecificMaskEvent?.Invoke(0);
 		}
-    }
+	}
 
-    public void OnWearMask2(InputAction.CallbackContext context)
-    {
-        if (context.started)
+	public void OnWearMask2(InputAction.CallbackContext context)
+	{
+		if (context.started)
 		{
 			OnSelectSpecificMaskEvent?.Invoke(1);
 		}
-    }
+	}
 
-    public void OnWearMask3(InputAction.CallbackContext context)
-    {
-        if (context.started)
+	public void OnWearMask3(InputAction.CallbackContext context)
+	{
+		if (context.started)
 		{
 			OnSelectSpecificMaskEvent?.Invoke(2);
 		}
-    }
+	}
+
+	public void OnInteract(InputAction.CallbackContext context)
+	{
+		if (context.started)
+		{
+			OnInteractEvent?.Invoke();
+		}
+	}
 
 	private void Awake()
 	{

@@ -187,10 +187,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a81468ea512f5307a5a9433e5ee0259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementSoundWaveEmitter
-  emissionDistanceInterval: 5
+  emissionDistanceInterval: 10
+  firstEmissionDistanceInterval: 0.1
   soundWavePrefab: {fileID: 741562878777953991, guid: 2250680a4eabcb5acaf48799a4effc09, type: 3}
   velocityThreshold: 0.1
   velocitySnappingFactor: 0.9
+  soundWaveVelocityInheritanceFactor: 0.5
 --- !u!1 &7455647099478455317
 GameObject:
   m_ObjectHideFlags: 0
