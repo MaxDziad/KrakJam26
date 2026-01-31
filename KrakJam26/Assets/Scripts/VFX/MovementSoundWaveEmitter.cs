@@ -9,6 +9,7 @@ public class MovementSoundWaveEmitter : MonoBehaviour
     [SerializeField] private float velocityThreshold = 0.1f;
     [SerializeField] private float velocitySnappingFactor = 0.9f;
     [SerializeField] private float soundWaveVelocityInheritanceFactor = 0.5f;
+    [SerializeField] private RandomSoundEmitter soundEmitter;
 
     Vector3 positionLastFrame;
     private Vector3 accumulatedVelocity;
@@ -44,5 +45,6 @@ public class MovementSoundWaveEmitter : MonoBehaviour
         var soundWave = Instantiate(soundWavePrefab, transform.position, Quaternion.identity);
         var soundWaveMovement = soundWave.AddComponent<LinearMovement>();
         soundWaveMovement.velocity = accumulatedVelocity * soundWaveVelocityInheritanceFactor;
+        soundEmitter?.Emit();
     }
 }
