@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class SoundWaveVFX : MonoBehaviour
 {
+    [SerializeField] private float startSize;
     [SerializeField] private float growRate;
     [SerializeField] private float lifetime;
+    [SerializeField] private Color color;
 
     private float currentSize = 0;
-    private Color currentColor;
-    private Color lastSetColor;
     private MeshRenderer ownMeshRenderer;
+    private float aliveTime = 0.0f;
+
 
     public static float GlobalOpacity = 1.0f;
+
     
     private void Awake()
     {
@@ -20,10 +23,12 @@ public class SoundWaveVFX : MonoBehaviour
     private void Start()
     {
         Destroy(gameObject, lifetime);
+        currentSize = startSize;
     }
 
     private void Update()
     {
+        aliveTime += Time.deltaTime;
         currentSize += growRate * Time.deltaTime;
         transform.localScale = Vector3.one * currentSize;
 
@@ -32,21 +37,10 @@ public class SoundWaveVFX : MonoBehaviour
 
     private void RefreshColor()
     {
-        var newColor = currentColor;
-        newColor.a *= GlobalOpacity;
-
-        if (newColor == lastSetColor)
-        {
-            return;
-        }
+        var newColor = color;
+        newColor.a *= GlobalOpacity * (1.0f - (aliveTime / lifetime));
 
         var material = ownMeshRenderer.material;
         material.SetColor("_Color", newColor);
-        lastSetColor = newColor;
-    }
-
-    public void SetColor(Color color)
-    {
-        currentColor = color;
     }
 }
