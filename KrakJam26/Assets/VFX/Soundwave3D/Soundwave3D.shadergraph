@@ -3845,7 +3845,7 @@
     "m_FunctionName": "ReconstructWorldPosition",
     "m_FunctionSource": "",
     "m_FunctionSourceUsePragmas": true,
-    "m_FunctionBody": "WorldPosition = ComputeWorldSpacePosition(\n        uv,\n        depth * 2.0 - 1.0,\n        UNITY_MATRIX_I_VP\n);"
+    "m_FunctionBody": "WorldPosition = ComputeWorldSpacePosition(\n    uv,\n#if defined(SHADER_API_GLCORE) || defined(SHADER_API_GLES) || defined(SHADER_API_GLES3)\n    depth * 2.0 - 1.0,\n#else\n    depth,\n#endif\n    UNITY_MATRIX_I_VP\n);"
 }
 
 {

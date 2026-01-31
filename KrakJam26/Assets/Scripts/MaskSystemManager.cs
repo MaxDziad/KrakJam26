@@ -1,16 +1,20 @@
 using System;
 using UnityEngine;
 
-public class MaskStateManager : MonoBehaviour
+public class MaskSystemManager : MonoBehaviour
 {
-	public static MaskStateManager Instance { get; private set; }
+	public static MaskSystemManager Instance { get; private set; }
 
 	public event Action<MaskType> OnMaskChangeStartedEvent;
 	public event Action<MaskType> OnMaskChangedEvent;
 
-	public MaskType CurrentMask { get; private set; } = MaskType.None;
+	[SerializeField]
+	private MasksData masksData;
 
 	private MaskVisuals maskVisuals;
+
+	public MasksData MasksData => masksData;
+	public MaskType CurrentMask { get; private set; } = MaskType.None;
 
 	private void Awake()
 	{

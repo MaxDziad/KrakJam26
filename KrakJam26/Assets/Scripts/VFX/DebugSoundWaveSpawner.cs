@@ -5,8 +5,6 @@ public class DebugSoundWaveSpawner : MonoBehaviour
 {
 
     [SerializeField] private SoundWaveVFX soundWavePrefab;
-    [SerializeField] private Color soundWaveColor;
-
     [SerializeField] private InputActionReference spawnAction;
 
     private void OnEnable()
@@ -36,13 +34,12 @@ public class DebugSoundWaveSpawner : MonoBehaviour
     {
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit))
         {
-            SpawnSoundWaveAt(hit.point, soundWaveColor);
+            SpawnSoundWaveAt(hit.point);
         }
     }
 
-    private void SpawnSoundWaveAt(Vector3 position, Color color)
+    private void SpawnSoundWaveAt(Vector3 position)
     {
         var soundWave = Instantiate(soundWavePrefab, position, Quaternion.identity);
-        soundWave.SetColor(color);
     }
 }

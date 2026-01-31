@@ -103,5 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c204160525ca21239ebf283392bb715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundWaveVFX
+  startSize: 1.5
   growRate: 20
-  lifetime: 5
+  lifetime: 3
+  color: {r: 1, g: 1, b: 1, a: 1}
