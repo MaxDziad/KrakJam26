@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 {
 	public event Action OnWearSelectedMaskEvent;
 	public event Action OnChangeMaskEvent;
+	public event Action OnShoutEvent;
+
 
 	[SerializeField]
 	private CinemachineCamera _playerCamera;
@@ -16,6 +18,8 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 
 	[SerializeField]
 	private Animator playerAnimator;
+
+	public Vector3 screamDirection { get; private set; }
 
 	private Vector2 _movementInput = Vector2.zero;
 	private InputActions _inputActions;
@@ -42,7 +46,8 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 
 	public void OnShout(InputAction.CallbackContext context)
 	{
-		throw new System.NotImplementedException();
+		if (context.performed)
+			OnShoutEvent?.Invoke();
 	}
 
 	private void Awake()
@@ -82,6 +87,17 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 			playerAnimator.SetFloat("MoveX", 0f);
 			playerAnimator.SetFloat("MoveY", 0f);
 		}
+
+		if (_movementDirection.sqrMagnitude > 0.001f)
+		{
+			Vector3 dir = _movementDirection.normalized;
+
+			dir.x = Mathf.Round(dir.x);
+			dir.z = Mathf.Round(dir.z);
+
+			screamDirection = new Vector3(dir.x, 0f, dir.z).normalized;
+		}
+
 	}
 
 	public void OnDestroy()
