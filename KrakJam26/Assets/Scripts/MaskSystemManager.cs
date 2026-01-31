@@ -58,7 +58,8 @@ public class MaskSystemManager : MonoBehaviour
         if (maskObj != null && !maskObj.IsUnlocked)
         {
             maskObj.Unlock();
-        }
+            TryChangeMask(mask);
+		}
     }
 
     public bool IsMaskUnlocked(MaskType mask)

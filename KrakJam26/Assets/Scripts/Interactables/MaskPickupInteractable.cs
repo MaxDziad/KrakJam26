@@ -2,13 +2,21 @@ using UnityEngine;
 
 public class MaskPickupItem : MonoBehaviour, IInteractable
 {
-    [SerializeField] 
-    private MaskType maskType;
+	[SerializeField]
+	private MaskType maskType;
 
-    public void Interact()
-    {
-        MaskSystemManager.Instance.UnlockMask(maskType);
+	[SerializeField]
+	private ActivableBase _activableOnPickup;
 
-        Destroy(gameObject);
-    }
+	public void Interact()
+	{
+		MaskSystemManager.Instance.UnlockMask(maskType);
+
+		if (_activableOnPickup != null)
+		{
+			_activableOnPickup.Activate();
+		}
+
+		Destroy(gameObject);
+	}
 }
