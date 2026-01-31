@@ -1,4 +1,5 @@
 using System;
+using PrimeTween;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,14 +14,21 @@ public class MaskInventorySwitcher : MonoBehaviour
 	[SerializeField]
 	private Image _maskPortraitImage;
 
+	[SerializeField]
+	private TweenSettings<float> _maskPortraitImageDissolveSettings;
+
 	private int _activeMaskIndex = -1;
 	private int _selectedMaskIndex = 0;
+	private Material _originalMaskPortraitMaterial;
+	private Tween _maskPortraitDissolveTween;
 
 	private void OnEnable()
 	{
 		_playerController.OnSelectNextMaskEvent += OnSelectNextMask;
 		_playerController.OnWearSelectedMaskEvent += OnWearSelectedMask;
 		_playerController.OnSelectSpecificMaskEvent += OnWearSpecificMask;
+		_originalMaskPortraitMaterial = _maskPortraitImage.material;
+		_maskPortraitImage.material = new Material(_originalMaskPortraitMaterial);
 	}
 
 	private void Start()
@@ -32,8 +40,22 @@ public class MaskInventorySwitcher : MonoBehaviour
 
 	private void OnMaskChangeStarted(MaskType type)
 	{
-		_maskPortraitImage.gameObject.SetActive(false);
+		_maskPortraitDissolveTween.Stop();
+		_maskPortraitDissolveTween = Tween.MaterialProperty(
+			_maskPortraitImage.material, 
+			Shader.PropertyToID("_Value"), 
+			_maskPortraitImageDissolveSettings.WithDirection(true)
+		).OnComplete(() => OnMaskPortraitFadedOut(type));
+	}
+
+	private void OnMaskPortraitFadedOut(MaskType type)
+	{
 		_maskPortraitImage.sprite = MaskSystemManager.Instance.MasksData.GetMaskSprite(type);
+		_maskPortraitDissolveTween = Tween.MaterialProperty(
+			_maskPortraitImage.material, 
+			Shader.PropertyToID("_Value"), 
+			_maskPortraitImageDissolveSettings.WithDirection(false)
+		);
 	}
 
 	private void OnMaskChanged(MaskType type)
@@ -100,6 +122,10 @@ public class MaskInventorySwitcher : MonoBehaviour
 			_playerController.OnWearSelectedMaskEvent -= OnWearSelectedMask;
 			_playerController.OnSelectSpecificMaskEvent -= OnWearSpecificMask;
 		}
+
+		Destroy(_maskPortraitImage.material);
+		_maskPortraitImage.material = _originalMaskPortraitMaterial;
+		_originalMaskPortraitMaterial = null;
 	}
 
 	private void OnDestroy()
