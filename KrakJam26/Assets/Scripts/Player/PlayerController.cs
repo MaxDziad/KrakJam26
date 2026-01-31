@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 	public event Action OnWearSelectedMaskEvent;
 	public event Action OnChangeMaskEvent;
 	public event Action OnShoutEvent;
+	public event Action OnInteractEvent;
 	public event Action OnSelectNextMaskEvent;
 	public event Action<int> OnSelectSpecificMaskEvent;
 
@@ -80,6 +81,14 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 			OnSelectSpecificMaskEvent?.Invoke(2);
 		}
     }
+
+	public void OnInteract(InputAction.CallbackContext context)
+	{
+		if (context.started)
+		{
+			OnInteractEvent?.Invoke();
+		}
+	}
 
 	private void Awake()
 	{
