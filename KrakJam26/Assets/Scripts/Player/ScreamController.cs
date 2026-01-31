@@ -34,6 +34,10 @@ public class ScreamController : MonoBehaviour
 
     private void Shoot()
     {
+        MaskType currentMask = MaskSystemManager.Instance.CurrentMask;
+        if (currentMask == MaskType.Silent || currentMask == MaskType.None)
+            return;
+
         if (cooldownTimer > 0f) return;
 
         Vector3 direction = playerController.screamDirection;
