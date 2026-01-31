@@ -1,55 +1,67 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
-    public event Action<IInteractable> OnInteractEvent;
+	public event Action<IInteractable> OnInteractEvent;
+	public event Action<IInteractable> OnInteractableDetectedEvent;
+	public event Action<IInteractable> OnInteractableLostEvent;
 
-    [SerializeField] 
-    private int interactablesLayer;
+	[SerializeField]
+	private int interactablesLayer;
 
-    private IInteractable currentInteractable;
+	private IInteractable currentInteractable;
 
-    [SerializeField]
-    private PlayerController playerController;
+	[SerializeField]
+	private PlayerController playerController;
 
-    private void OnEnable()
-    {
-        playerController.OnInteractEvent += TryInteract;
-    }
+	private void OnEnable()
+	{
+		playerController.OnInteractEvent += TryInteract;
+	}
 
-    private void OnDisable()
-    {
-        playerController.OnInteractEvent -= TryInteract;
-    }
+	private void OnDisable()
+	{
+		playerController.OnInteractEvent -= TryInteract;
+	}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer != interactablesLayer) return;
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.layer != interactablesLayer) return;
 
-        IInteractable interactable = other.GetComponent<IInteractable>();
-        if (interactable != null)
-        {
-            currentInteractable = interactable;
-        }
-    }
+		IInteractable interactable = other.GetComponent<IInteractable>();
+		if (interactable != null)
+		{
+			currentInteractable = interactable;
+			currentInteractable.OnDisabledEvent += OnInteractableDisabled;
+			OnInteractableDetectedEvent?.Invoke(currentInteractable);
+		}
+	}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer != interactablesLayer) return;
+	private void OnInteractableDisabled()
+	{
+		currentInteractable.OnDisabledEvent -= OnInteractableDisabled;
+		OnInteractableLostEvent?.Invoke(currentInteractable);
+		currentInteractable = null;
+	}
 
-        IInteractable interactable = other.GetComponent<IInteractable>();
-        if (interactable != null && currentInteractable == interactable)
-        {
-            currentInteractable = null;
-        }
-    }
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.gameObject.layer != interactablesLayer) return;
 
-    private void TryInteract()
-    {
-        if (currentInteractable == null) return;
-        Debug.Log("dziala");
-        currentInteractable.Interact();
-        currentInteractable = null;
-    }
+		IInteractable interactable = other.GetComponent<IInteractable>();
+		if (interactable != null && currentInteractable == interactable)
+		{
+			currentInteractable.OnDisabledEvent -= OnInteractableDisabled;
+			currentInteractable = null;
+			OnInteractableLostEvent?.Invoke(interactable);
+		}
+	}
+
+	private void TryInteract()
+	{
+		if (currentInteractable == null) return;
+		currentInteractable.Interact();
+		currentInteractable = null;
+	}
 }

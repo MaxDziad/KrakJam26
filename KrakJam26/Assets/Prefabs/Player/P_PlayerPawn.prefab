@@ -1134,6 +1134,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 257939271992720715, guid: 8fd83732577019d409b9ce98a6db6fc7, type: 3}
+      propertyPath: _interactor
+      value: 
+      objectReference: {fileID: 5357977993659450016}
     - target: {fileID: 569412037700050521, guid: 8fd83732577019d409b9ce98a6db6fc7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
