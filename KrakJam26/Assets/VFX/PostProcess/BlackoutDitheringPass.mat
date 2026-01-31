@@ -53,7 +53,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mask:
-        m_Texture: {fileID: 2800000, guid: c08102e3bff5a5e31bad904b8e67dfbd, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5b299fcf308766303938dc7528cbdc8c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -111,7 +111,7 @@ Material:
     - _MaskImpact: -0.42
     - _Metallic: 0
     - _NoiseScale: 40
-    - _NoiseSize: 0.97
+    - _NoiseSize: 1.5
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _PosterizationSteps: 50
@@ -131,8 +131,10 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MaskOffset: {r: 0, g: 0.76, b: 0, a: 0}
+    - _MaskScale: {r: 1, g: 0.5, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _ValueRanges: {r: -0.44, g: 1.4, b: 0, a: 0}
+    - _ValueRanges: {r: -0.69, g: 1.46, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &8122280804153875498

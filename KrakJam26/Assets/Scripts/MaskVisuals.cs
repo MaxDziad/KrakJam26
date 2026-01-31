@@ -53,14 +53,26 @@ public class MaskVisuals : MonoBehaviour
             visualSequence.Stop();
         }
 
+        visualSequence = Sequence.Create()
+            .Group(Tween.Custom(new TweenSettings<float>(blindVisualState, 1.0f, blindTweenSettings), value => blindVisualState = value))
+            .Group(Tween.Custom(new TweenSettings<float>(deafVisualState, 1.0f, deafTweenSettings), value => deafVisualState = value))
+            .Group(Tween.Custom(new TweenSettings<float>(muteVisualState, 1.0f, muteTweenSettings), value => muteVisualState = value))
+        .OnComplete(() => OnVisualMidpointReached(onComplete)); 
+    }
+
+    private void OnVisualMidpointReached(Action onComplete = null)
+    {
+        var maskTexture = MaskSystemManager.Instance.MasksData.GetMaskSprite(targetMaskType).texture;
+        blindnessRenderPass.passMaterial.SetTexture("_Mask", maskTexture);
+
         float blindTarget = (targetMaskType is MaskType.Blind or MaskType.None) ? 1.0f : 0.0f;
         float deafTarget = (targetMaskType is MaskType.Deaf or MaskType.None) ? 1.0f : 0.0f;
         float muteTarget = (targetMaskType is MaskType.Silent or MaskType.None) ? 1.0f : 0.0f;
 
         visualSequence = Sequence.Create()
-            .Group(Tween.Custom(new TweenSettings<float>(blindVisualState, blindTarget, blindTweenSettings), value => blindVisualState = value))
-            .Group(Tween.Custom(new TweenSettings<float>(deafVisualState, deafTarget, deafTweenSettings), value => deafVisualState = value))
-            .Group(Tween.Custom(new TweenSettings<float>(muteVisualState, muteTarget, muteTweenSettings), value => muteVisualState = value))
+            .Chain(Tween.Custom(new TweenSettings<float>(1.0f, blindTarget, blindTweenSettings), value => blindVisualState = value))
+            .Group(Tween.Custom(new TweenSettings<float>(1.0f, deafTarget, deafTweenSettings), value => deafVisualState = value))
+            .Group(Tween.Custom(new TweenSettings<float>(1.0f, muteTarget, muteTweenSettings), value => muteVisualState = value))
         .OnComplete(onComplete);
     }
 }
