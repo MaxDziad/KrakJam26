@@ -4,6 +4,7 @@ using UnityEngine;
 public class MovementSoundWaveEmitter : MonoBehaviour
 {
     [SerializeField] private float emissionDistanceInterval = 1.0f;
+    [SerializeField] private float soundEmissionDistanceScale = 2.0f;
     [SerializeField] private float firstEmissionDistanceInterval = 0.1f;
     [SerializeField] private SoundWaveVFX soundWavePrefab;
     [SerializeField] private float velocityThreshold = 0.1f;
@@ -14,11 +15,15 @@ public class MovementSoundWaveEmitter : MonoBehaviour
     Vector3 positionLastFrame;
     private Vector3 accumulatedVelocity;
     private float accumulatedDistanceTravelled;
+    private float accumulatedDistanceTravelledForSound;
+
+    private float EmissionDistanceIntervalForSound => emissionDistanceInterval / soundEmissionDistanceScale;
 
     private void Start()
     {
         positionLastFrame = transform.position;
         accumulatedDistanceTravelled = emissionDistanceInterval - firstEmissionDistanceInterval;
+        accumulatedDistanceTravelledForSound = EmissionDistanceIntervalForSound - firstEmissionDistanceInterval;
     }
 
     private void FixedUpdate()
@@ -29,14 +34,22 @@ public class MovementSoundWaveEmitter : MonoBehaviour
         if (accumulatedVelocity.magnitude < velocityThreshold)
         {
             accumulatedDistanceTravelled = emissionDistanceInterval - firstEmissionDistanceInterval;
+            accumulatedDistanceTravelledForSound = EmissionDistanceIntervalForSound - firstEmissionDistanceInterval;
             return;
         }
         accumulatedDistanceTravelled += accumulatedVelocity.magnitude * Time.fixedDeltaTime;
+        accumulatedDistanceTravelledForSound += accumulatedVelocity.magnitude * Time.fixedDeltaTime;
 
         if (accumulatedDistanceTravelled >= emissionDistanceInterval)
         {
             accumulatedDistanceTravelled -= emissionDistanceInterval;
             Emit();
+        }
+
+        if (accumulatedDistanceTravelledForSound >= EmissionDistanceIntervalForSound)
+        {
+            accumulatedDistanceTravelledForSound -= EmissionDistanceIntervalForSound;
+            soundEmitter?.Emit();
         }
     }
 
@@ -45,6 +58,5 @@ public class MovementSoundWaveEmitter : MonoBehaviour
         var soundWave = Instantiate(soundWavePrefab, transform.position, Quaternion.identity);
         var soundWaveMovement = soundWave.AddComponent<LinearMovement>();
         soundWaveMovement.velocity = accumulatedVelocity * soundWaveVelocityInheritanceFactor;
-        soundEmitter?.Emit();
     }
 }

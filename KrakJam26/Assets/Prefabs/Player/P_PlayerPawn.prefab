@@ -947,6 +947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementSoundWaveEmitter
   emissionDistanceInterval: 10
+  soundEmissionDistanceScale: 3
   firstEmissionDistanceInterval: 0.1
   soundWavePrefab: {fileID: 4758480201446902062, guid: 8d8834aa693df198abdd8939bc39d3c1, type: 3}
   velocityThreshold: 0.1
