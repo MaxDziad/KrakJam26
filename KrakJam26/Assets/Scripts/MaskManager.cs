@@ -10,6 +10,8 @@ public class MaskStateManager : MonoBehaviour
 
 	public MaskType CurrentMask { get; private set; } = MaskType.None;
 
+	private MaskVisuals maskVisuals;
+
 	private void Awake()
 	{
 		if (Instance != null && Instance != this)
@@ -20,17 +22,22 @@ public class MaskStateManager : MonoBehaviour
 
 		Instance = this;
 		DontDestroyOnLoad(gameObject);
+		maskVisuals = GetComponent<MaskVisuals>();
 	}
 
 	public void ChangeMask(MaskType newMask)
 	{
-		if (newMask == CurrentMask)
+		if (newMask == CurrentMask || maskVisuals.IsChangeInProgress)
 		{
 			return;
 		}
 
 		OnMaskChangeStartedEvent?.Invoke(newMask);
-		// Need to animate mask changing for some time, then after that notify that the mask has changed.
-		// Swap mask and call OnMaskChangedEvent after animation is done.
+		
+		maskVisuals.StartVisualChange(newMask, () =>
+		{
+			CurrentMask = newMask;
+			OnMaskChangedEvent?.Invoke(newMask);
+		});
 	}
 }
