@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MaskInventorySwitcher : MonoBehaviour
 {
@@ -8,22 +10,38 @@ public class MaskInventorySwitcher : MonoBehaviour
 	[SerializeField]
 	private MaskInventoryObject[] _maskInventoryObjects;
 
-	private int _activeMaskIndex = 0;
+	[SerializeField]
+	private Image _maskPortraitImage;
+
+	private int _activeMaskIndex = -1;
 	private int _selectedMaskIndex = 0;
 
 	private void OnEnable()
 	{
-		_playerController.OnSelectNextMaskEvent += OnChangeMask;
+		_playerController.OnSelectNextMaskEvent += OnSelectNextMask;
 		_playerController.OnWearSelectedMaskEvent += OnWearSelectedMask;
 		_playerController.OnSelectSpecificMaskEvent += OnWearSpecificMask;
 	}
 
 	private void Start()
 	{
-		OnWearSelectedMask();
+		MaskSystemManager.Instance.OnMaskChangedEvent += OnMaskChanged;
+		MaskSystemManager.Instance.OnMaskChangeStartedEvent += OnMaskChangeStarted;
+		RefreshButtons();
 	}
 
-	private void OnChangeMask()
+	private void OnMaskChangeStarted(MaskType type)
+	{
+		_maskPortraitImage.gameObject.SetActive(false);
+		_maskPortraitImage.sprite = MaskSystemManager.Instance.MasksData.GetMaskSprite(type);
+	}
+
+	private void OnMaskChanged(MaskType type)
+	{
+		_maskPortraitImage.gameObject.SetActive(true);
+	}
+
+	private void OnSelectNextMask()
 	{
 		for(int i = 0; i < 2; i++)
 		{
@@ -40,7 +58,8 @@ public class MaskInventorySwitcher : MonoBehaviour
 	private void OnWearSelectedMask()
 	{
 		var targetType = _maskInventoryObjects[_selectedMaskIndex].MaskType;
-		if (!MaskStateManager.Instance.TryChangeMask(targetType))
+
+		if (!MaskSystemManager.Instance.TryChangeMask(targetType))
 		{
 			return;
 		}
@@ -67,9 +86,9 @@ public class MaskInventorySwitcher : MonoBehaviour
 	private void RefreshButtonState(int index)
 	{
 		_maskInventoryObjects[index].SetState(
-			index == _activeMaskIndex ? MaskInventoryObject.State.Used :
-			index == _selectedMaskIndex ? MaskInventoryObject.State.Selected : 
-			MaskInventoryObject.State.Neutral
+			index == _activeMaskIndex ? MaskInventoryObject.MaskInventoryState.Wearing :
+			index == _selectedMaskIndex ? MaskInventoryObject.MaskInventoryState.Selected : 
+			MaskInventoryObject.MaskInventoryState.Neutral
 		);
 	}
 
@@ -77,9 +96,19 @@ public class MaskInventorySwitcher : MonoBehaviour
 	{
 		if (_playerController != null)
 		{
-			_playerController.OnSelectNextMaskEvent -= OnChangeMask;
+			_playerController.OnSelectNextMaskEvent -= OnSelectNextMask;
 			_playerController.OnWearSelectedMaskEvent -= OnWearSelectedMask;
 			_playerController.OnSelectSpecificMaskEvent -= OnWearSpecificMask;
+		}
+	}
+
+	private void OnDestroy()
+	{
+		if (MaskSystemManager.Instance != null)
+		{
+
+			MaskSystemManager.Instance.OnMaskChangedEvent -= OnMaskChanged;
+			MaskSystemManager.Instance.OnMaskChangeStartedEvent -= OnMaskChangeStarted;
 		}
 	}
 }

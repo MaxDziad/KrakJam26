@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935ebfa28a4c66b4091f18e9a8c04164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaskStateManager
+  masksData: {fileID: 11400000, guid: e514d6d75fd173e4c8c4df8fb308f28a, type: 2}
 --- !u!114 &6114973543061145132
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ using System;
 public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 {
 	public event Action OnWearSelectedMaskEvent;
-	public event Action OnChangeMaskEvent;
 	public event Action OnShoutEvent;
 	public event Action OnSelectNextMaskEvent;
 	public event Action<int> OnSelectSpecificMaskEvent;

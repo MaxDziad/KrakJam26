@@ -8,17 +8,16 @@ public class MaskInventoryObject : MonoBehaviour
 	[Header("Visual Colors")]
 	[SerializeField] private Color neutralStateColor;
 	[SerializeField] private Color selectedStateColor;
-	[SerializeField] private Color usedStateColor;
+	[SerializeField] private Color wearingStateColor;
 
 	private Image _maskImage;
-	private Button _button;
 
 	public MaskType MaskType => _maskType;
+	public Image MaskImage => _maskImage;
 
 	private void Awake()
 	{
 		_maskImage = GetComponent<Image>();
-		_button = GetComponent<Button>();
 	}
 
 	public bool HasImage => _maskImage.sprite != null;
@@ -28,20 +27,20 @@ public class MaskInventoryObject : MonoBehaviour
 		_maskImage.sprite = maskSprite;
 	}
 
-	public void SetState(State state)
+	public void SetState(MaskInventoryState state)
 	{
 		_maskImage.color = state switch
 		{
-			State.Selected => selectedStateColor,
-			State.Used => usedStateColor,
+			MaskInventoryState.Selected => selectedStateColor,
+			MaskInventoryState.Wearing => wearingStateColor,
 			_ => neutralStateColor,
 		};
 	}
 
-	public enum State
+	public enum MaskInventoryState
 	{
 		Neutral,
 		Selected,
-		Used
+		Wearing
 	}
 }
