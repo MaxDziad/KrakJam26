@@ -6,6 +6,9 @@ public class ScreamController : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float projectileSpeed = 4f;
     [SerializeField] private float cooldown = 2f;
+
+    [SerializeField] private RandomSoundEmitter audioToPlay;
+
     private float cooldownTimer = 0f;
 
     private PlayerController playerController;
@@ -51,5 +54,7 @@ public class ScreamController : MonoBehaviour
         projectile.GetComponent<ScreamProjectile>().Initialize(direction, projectileSpeed);
 
         cooldownTimer = cooldown;
+
+        audioToPlay.Emit();
     }
 }
