@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 
 	public Vector3 screamDirection { get; private set; }
 
+	public bool CanMove => MaskSystemManager.Instance.CurrentMask != MaskType.None;
+
 	private Vector2 _movementInput = Vector2.zero;
 	private InputActions _inputActions;
 	private CharacterController _characterController;
@@ -102,6 +104,11 @@ public class PlayerController : MonoBehaviour, InputActions.IGameplayActions
 
 	public void FixedUpdate()
 	{
+		if (!CanMove)
+		{
+			return;
+		}
+
 		if (_movementInput != Vector2.zero)
 		{
 			Vector3 camForward = Vector3.ProjectOnPlane(CameraTransform.forward, Vector3.up).normalized;

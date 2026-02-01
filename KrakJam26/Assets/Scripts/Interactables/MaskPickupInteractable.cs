@@ -11,12 +11,12 @@ public class MaskPickupItem : MonoBehaviour, IInteractable
 
 	public event Action OnDisabledEvent;
 
-	public string GetPromptText()
+	public virtual string GetPromptText()
 	{
 		return "Pick up ???";
 	}
 
-	public void Interact()
+	public virtual void Interact()
 	{
 		MaskSystemManager.Instance.UnlockMask(maskType);
 
