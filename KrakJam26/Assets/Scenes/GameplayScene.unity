@@ -1484,6 +1484,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5586058226366626494, guid: 7ee25ade517a0bb4a96ebd068a94eb8f, type: 3}
+      propertyPath: startingMask
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6958596610231485098, guid: 7ee25ade517a0bb4a96ebd068a94eb8f, type: 3}
       propertyPath: m_Name
       value: P_Systems
@@ -3482,7 +3486,7 @@ Transform:
   m_GameObject: {fileID: 1225109910}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.18, y: 0, z: 0}
+  m_LocalPosition: {x: -80.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3501,7 +3505,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: c07bb8b526a4a33c68d172f931af3fe5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3510,7 +3514,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0.2
   MinDistance: 1
-  MaxDistance: 41
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
