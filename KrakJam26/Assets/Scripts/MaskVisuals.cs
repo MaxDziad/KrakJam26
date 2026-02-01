@@ -75,10 +75,10 @@ public class MaskVisuals : MonoBehaviour
 
     private void OnVisualMidpointReached(bool force = false, Action onComplete = null)
     {
-        if (MaskSystemManager.Instance != null)
+        var maskSprite = MaskSystemManager.Instance.MasksData.GetMaskSprite(targetMaskType);
+        if (maskSprite != null)
         {
-            var maskTexture = MaskSystemManager.Instance.MasksData.GetMaskSprite(targetMaskType).texture;
-            blindnessRenderPass.passMaterial.SetTexture("_Mask", maskTexture);
+            blindnessRenderPass.passMaterial.SetTexture("_Mask", maskSprite.texture);
         }
 
         float blindTarget = GetBlindTarget(targetMaskType);
