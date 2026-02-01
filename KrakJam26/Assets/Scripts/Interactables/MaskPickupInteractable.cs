@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MaskPickupItem : MonoBehaviour, IInteractable
@@ -7,6 +8,13 @@ public class MaskPickupItem : MonoBehaviour, IInteractable
 
 	[SerializeField]
 	private ActivableBase _activableOnPickup;
+
+	public event Action OnDisabledEvent;
+
+	public string GetPromptText()
+	{
+		return "Pick up ???";
+	}
 
 	public void Interact()
 	{
@@ -18,5 +26,10 @@ public class MaskPickupItem : MonoBehaviour, IInteractable
 		}
 
 		Destroy(gameObject);
+	}
+
+	private void OnDisable()
+	{
+		OnDisabledEvent?.Invoke();
 	}
 }

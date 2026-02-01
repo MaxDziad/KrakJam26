@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ItemPickup : MonoBehaviour, IInteractable
@@ -7,7 +8,9 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
     private InventoryManager _inventory;
 
-    private void Start()
+	public event Action OnDisabledEvent;
+
+	private void Start()
     {
         _inventory = FindObjectOfType<InventoryManager>();
     }
@@ -21,4 +24,14 @@ public class ItemPickup : MonoBehaviour, IInteractable
             gameObject.SetActive(false);
         }
     }
+
+	public string GetPromptText()
+	{
+        return "Pick up part";
+	}
+
+	private void OnDisable()
+	{
+		OnDisabledEvent?.Invoke();
+	}
 }

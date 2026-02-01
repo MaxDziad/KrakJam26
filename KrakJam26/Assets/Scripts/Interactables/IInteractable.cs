@@ -1,6 +1,8 @@
-using UnityEngine;
+using System;
 
 public interface IInteractable
 {
-    void Interact();
+	public event Action OnDisabledEvent;
+	void Interact();
+	string GetPromptText();
 }
