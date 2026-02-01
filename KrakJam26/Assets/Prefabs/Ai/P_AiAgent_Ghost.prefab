@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6876533149996227503, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7455647099478455317, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_Name
       value: P_AiAgent_Ghost
