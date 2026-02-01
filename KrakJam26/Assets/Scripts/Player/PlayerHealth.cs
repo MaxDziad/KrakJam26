@@ -9,6 +9,12 @@ public class PlayerHealth : MonoBehaviour
 	[SerializeField]
 	private int _maxHealth = 100;
 
+	[SerializeField]
+	private ActivableBase _onDeathActivable;
+
+	[SerializeField]
+	private ActivableBase _onDamageActivable;
+
 	private float _healthPercentage;
 	private int _currentHealth;
 
@@ -27,10 +33,12 @@ public class PlayerHealth : MonoBehaviour
 		_currentHealth = Mathf.Clamp(value, 0, _maxHealth);
 		_healthPercentage = (float)_currentHealth / _maxHealth;
 		OnHealthChangedEvent?.Invoke(_healthPercentage);
+		_onDamageActivable?.Activate();
 
 		if (_currentHealth <= 0)
 		{
 			OnDeathEvent?.Invoke();
+			_onDeathActivable?.Activate();
 		}
 	}
 
