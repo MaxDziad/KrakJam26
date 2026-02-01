@@ -913,7 +913,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.5393884, g: 0.86692035, b: 1, a: 1}
   m_Intensity: 10
-  m_Range: 10
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize2D: {x: 0.5, y: 0.5}
