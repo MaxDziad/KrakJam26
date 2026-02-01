@@ -25,6 +25,7 @@ public class AiAgentBase : MonoBehaviour
 		InitializeBlackboard();
 		MaskSystemManager.Instance.OnMaskChangedEvent += OnMaskChanged;
 		AiAgentSystemManager.Instance.RegisterAgent(this);
+		_behaviorGraphAgent.enabled = true;
 		_behaviorGraphAgent.Start();
 	}
 

@@ -348,8 +348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScreamController
   screamProjectilePrefab: {fileID: 309819970851186688, guid: 6b8d6e708d0db4c44b02637df020dc7f, type: 3}
   spawnPoint: {fileID: 4857558258120780867}
-  projectileSpeed: 22
-  cooldown: 2
+  projectileSpeed: 25
+  cooldown: 3
 --- !u!114 &7131807523614211000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -985,7 +985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4337334024413208791, guid: 8fd83732577019d409b9ce98a6db6fc7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1763.7909
+      value: 1669.4958
       objectReference: {fileID: 0}
     - target: {fileID: 4337334024413208791, guid: 8fd83732577019d409b9ce98a6db6fc7, type: 3}
       propertyPath: m_AnchoredPosition.y
