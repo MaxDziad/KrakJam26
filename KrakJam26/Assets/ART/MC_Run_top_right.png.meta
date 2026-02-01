@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8210b9672099cd04fb744e56b84d5de6
+guid: f99761787c27a064199e6adefcbc3abb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MC_Run_1-Sheet_0
+      name: MC_Run_top_right_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,14 +112,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a224827e2f7428c41abd8e2a9cd3fcf8
-      internalID: -1270496972
+      spriteID: 292625d0c9ac38a42988647cd1b9dd64
+      internalID: -1719566367
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_Run_1-Sheet_1
+      name: MC_Run_top_right_1
       rect:
         serializedVersion: 2
         x: 45
@@ -134,14 +134,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b4de64c771202b49a63aa5e9a91d238
-      internalID: -1038976209
+      spriteID: 243d97ea394a4a64ba4bbfae65772f94
+      internalID: -2147335728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_Run_1-Sheet_2
+      name: MC_Run_top_right_2
       rect:
         serializedVersion: 2
         x: 90
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b01570687ebc7743bdeb1b85bea824f
-      internalID: 524536421
+      spriteID: 5d44912799a71154f8b85245ec607b31
+      internalID: -579622603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_Run_1-Sheet_3
+      name: MC_Run_top_right_3
       rect:
         serializedVersion: 2
         x: 135
@@ -178,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1600c86ccefc4247ade149e77295342
-      internalID: -1825956906
+      spriteID: 4b6db5b4fedda1a44b7a1698d5501aa5
+      internalID: -1073882398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_Run_1-Sheet_4
+      name: MC_Run_top_right_4
       rect:
         serializedVersion: 2
         x: 180
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 520fb9bb828d5ad45bbc522d7075dc23
-      internalID: -878284665
+      spriteID: 1cb74b0f750d31248984db31f1abd1c1
+      internalID: 1607915869
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_Run_1-Sheet_5
+      name: MC_Run_top_right_5
       rect:
         serializedVersion: 2
         x: 225
@@ -222,14 +222,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ae3356cebdb37a4eb5a23026ee32aaf
-      internalID: -1302289946
+      spriteID: 974cb0f8771be8149a1d2e20e10dbe4b
+      internalID: 1240827577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_Run_1-Sheet_6
+      name: MC_Run_top_right_6
       rect:
         serializedVersion: 2
         x: 270
@@ -244,14 +244,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 867877c1d8e8fc74991e4ddf9d9eb396
-      internalID: 1850711777
+      spriteID: ced152cd0b1aba442b5da6592cb95498
+      internalID: -117657516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_Run_1-Sheet_7
+      name: MC_Run_top_right_7
       rect:
         serializedVersion: 2
         x: 315
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86ae480fc0202df4790e66bfd76a965b
-      internalID: 993876090
+      spriteID: 9d08d5945821f3b4a917f0161bf929f9
+      internalID: 973636195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_Run_1-Sheet_8
+      name: MC_Run_top_right_8
       rect:
         serializedVersion: 2
         x: 360
@@ -288,8 +288,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8171d382fa83c9488aa4f804ee440bd
-      internalID: 1438514325
+      spriteID: 6994ad21bf7167443aaee86a6f13f17d
+      internalID: 136402668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MC_Run_top_right_9
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 0
+        width: 45
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e463ef963d4c19c489c9982adb409c76
+      internalID: -136474216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MC_Run_top_right_10
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 0
+        width: 45
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d69dc1436a2e0524dbbc5f43bad573c7
+      internalID: 438773229
       vertices: []
       indices: 
       edges: []
@@ -298,7 +342,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a0f836fa58f583f43a2081fa21d4f09c
+    spriteID: e7e92d2ffa4b6144295d3277bb9a35cc
     internalID: 0
     vertices: []
     indices: 
@@ -308,17 +352,19 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":45.0,"y":59.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":45.0,"y":59.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":1,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      MC_Run_1-Sheet_0: -1270496972
-      MC_Run_1-Sheet_1: -1038976209
-      MC_Run_1-Sheet_2: 524536421
-      MC_Run_1-Sheet_3: -1825956906
-      MC_Run_1-Sheet_4: -878284665
-      MC_Run_1-Sheet_5: -1302289946
-      MC_Run_1-Sheet_6: 1850711777
-      MC_Run_1-Sheet_7: 993876090
-      MC_Run_1-Sheet_8: 1438514325
+      MC_Run_top_right_0: -1719566367
+      MC_Run_top_right_1: -2147335728
+      MC_Run_top_right_10: 438773229
+      MC_Run_top_right_2: -579622603
+      MC_Run_top_right_3: -1073882398
+      MC_Run_top_right_4: 1607915869
+      MC_Run_top_right_5: 1240827577
+      MC_Run_top_right_6: -117657516
+      MC_Run_top_right_7: 973636195
+      MC_Run_top_right_8: 136402668
+      MC_Run_top_right_9: -136474216
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
