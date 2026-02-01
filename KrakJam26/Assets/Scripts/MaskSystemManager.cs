@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MaskSystemManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class MaskSystemManager : MonoBehaviour
     public event Action<MaskType> OnMaskChangedEvent;
 
     [SerializeField] private MasksData masksData;
-    [SerializeField] private MaskInventoryObject[] maskInventoryObjects;
+    [SerializeField] private HashSet<MaskType> unlockedTypes = new();
 
     private MaskVisuals maskVisuals;
 
@@ -34,8 +35,7 @@ public class MaskSystemManager : MonoBehaviour
         if (newMask == CurrentMask || maskVisuals.IsChangeInProgress)
             return false;
 
-        MaskInventoryObject maskObj = GetMaskObject(newMask);
-        if (maskObj == null || !maskObj.IsUnlocked)
+        if (!IsMaskUnlocked(newMask))
         {
             Debug.Log($"mask locked");
             return false;
@@ -54,27 +54,15 @@ public class MaskSystemManager : MonoBehaviour
 
     public void UnlockMask(MaskType mask)
     {
-        MaskInventoryObject maskObj = GetMaskObject(mask);
-        if (maskObj != null && !maskObj.IsUnlocked)
-        {
-            maskObj.Unlock();
-            TryChangeMask(mask);
-		}
+        if (mask == MaskType.None || IsMaskUnlocked(mask))
+            return;
+
+        unlockedTypes.Add(mask);
+        TryChangeMask(mask);
     }
 
     public bool IsMaskUnlocked(MaskType mask)
     {
-        MaskInventoryObject maskObj = GetMaskObject(mask);
-        return maskObj != null && maskObj.IsUnlocked;
-    }
-
-    private MaskInventoryObject GetMaskObject(MaskType mask)
-    {
-        foreach (var obj in maskInventoryObjects)
-        {
-            if (obj.MaskType == mask)
-                return obj;
-        }
-        return null;
+        return mask == MaskType.None || unlockedTypes.Contains(mask);
     }
 }
