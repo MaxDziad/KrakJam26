@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_AiAgent_ShyGuy
       objectReference: {fileID: 0}
+    - target: {fileID: 9223122562938206795, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
