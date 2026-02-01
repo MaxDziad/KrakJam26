@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2154763930659568173, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.68809
       objectReference: {fileID: 0}
     - target: {fileID: 2154763930659568173, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2154763930659568173, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 11.64365
       objectReference: {fileID: 0}
     - target: {fileID: 2154763930659568173, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_LocalRotation.w
@@ -88,9 +88,17 @@ PrefabInstance:
       propertyPath: _activableOnHit
       value: 
       objectReference: {fileID: 8295642990356696210}
+    - target: {fileID: 4385207041762057216, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_WalkableMask
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6748358993457016079, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876533149996227503, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7455647099478455317, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_Name
