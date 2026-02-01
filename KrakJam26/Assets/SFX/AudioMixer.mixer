@@ -15,8 +15,13 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
-  m_AudioMixerGroupViews: []
+  m_ExposedParameters:
+  - guid: f8f959fb450afa71aaed7d65948520b2
+    name: LowpassCutoff
+  m_AudioMixerGroupViews:
+  - guids:
+    - afc137cb30a91dc368c53802eb7e890f
+    name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
@@ -64,6 +69,7 @@ AudioMixerSnapshotController:
   m_SnapshotID: 71e4a7475b3c8dbeab6242a68e4ff2e7
   m_FloatValues:
     143d8783a197fb259add77abe3a1e838: 1
+    f8f959fb450afa71aaed7d65948520b2: 22000
   m_TransitionOverrides: {}
 --- !u!244 &4397543734974225569
 AudioMixerEffectController:
@@ -82,4 +88,4 @@ AudioMixerEffectController:
     m_GUID: 143d8783a197fb259add77abe3a1e838
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
-  m_Bypass: 1
+  m_Bypass: 0

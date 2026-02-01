@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaskStateManager
   masksData: {fileID: 11400000, guid: e514d6d75fd173e4c8c4df8fb308f28a, type: 2}
+  unlockedTypes: 
+  startingMask: 1
 --- !u!114 &6114973543061145132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaskVisuals
   visibilityAffectOnSoundWaves: 0.9
+  deafnessCutoffFrequency: 500
   blindTweenSettings:
     duration: 0.4
     ease: 2
@@ -109,6 +112,7 @@ MonoBehaviour:
     _useFixedUpdate: 0
     _updateType: 0
   blindnessRenderPass: {fileID: 1268993819686969731, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
+  audioMixerGroup: {fileID: 24300002, guid: 5eba3cf7dbdf097d9bceac3d753dd0f9, type: 2}
 --- !u!1 &4235124555309290306
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +327,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaskSwitchSFX
   audioSource: {fileID: 3558643948841842668}
+  silentPitch: 1
+  deafPitch: 0.8
+  blindPitch: 1.2
 --- !u!82 &3558643948841842668
 AudioSource:
   m_ObjectHideFlags: 0

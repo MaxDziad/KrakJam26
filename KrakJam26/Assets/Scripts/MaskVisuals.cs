@@ -1,12 +1,14 @@
 using System;
 using PrimeTween;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Rendering.Universal;
 
 public class MaskVisuals : MonoBehaviour
 {
     [Header("Visual Settings")]
     [SerializeField] private float visibilityAffectOnSoundWaves = 0.9f;
+    [SerializeField] private float deafnessCutoffFrequency = 500.0f;
     [Header("Tween Settings")]
     [SerializeField] private TweenSettings blindTweenSettings;
     [SerializeField] private TweenSettings deafTweenSettings;
@@ -14,6 +16,7 @@ public class MaskVisuals : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private FullScreenPassRendererFeature blindnessRenderPass;
+    [SerializeField] private AudioMixerGroup audioMixerGroup;
 
     private MaskType targetMaskType;
     private float blindVisualState = 0.0f;
@@ -45,6 +48,8 @@ public class MaskVisuals : MonoBehaviour
         float maxSoundWaveOpacity = Mathf.Lerp(1.0f - visibilityAffectOnSoundWaves, 1.0f, blindVisualState);
         SoundWaveVFX.GlobalOpacity = Mathf.Min(maxSoundWaveOpacity, 1.0f - deafVisualState);
         blindnessRenderPass.passMaterial.SetFloat("_Value", blindVisualState);
+
+        audioMixerGroup.audioMixer.SetFloat("LowpassCutoff", Mathf.Lerp(22000.0f, deafnessCutoffFrequency, deafVisualState));
     }
 
     public void StartVisualChange(MaskType maskType, bool force = false, Action onComplete = null)
