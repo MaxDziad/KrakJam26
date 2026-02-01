@@ -18,16 +18,21 @@ public class StartScreenHandlerLastMinuteHackPozdrawiamMame : MonoBehaviour
 
     private void Update()
     {
-        float t = playerControllerThingy != null && playerControllerThingy.isPlaying ? playerControllerThingy.time : 99999.999f;
-
-        cover1.SetActive(t < cover1Delay);
-        cover2.SetActive(t < cover2Delay);
-        cover3.SetActive(t < cover3Delay);
-        startTextCover.SetActive(Time.time % startTextInterval < startTextInterval * 0.5f);
-
         bool anyPressed = false;
         var kb = UnityEngine.InputSystem.Keyboard.current;
         if (kb != null) anyPressed |= kb.anyKey.wasPressedThisFrame;
+
+        if (playerControllerThingy != null)
+        {
+            float t = playerControllerThingy != null && playerControllerThingy.isPlaying ? playerControllerThingy.time : 99999.999f;
+
+            cover1.SetActive(t < cover1Delay);
+            cover2.SetActive(t < cover2Delay);
+            cover3.SetActive(t < cover3Delay);
+            startTextCover.SetActive(Time.time % startTextInterval < startTextInterval * 0.5f);
+
+            anyPressed = anyPressed && t > cover3Delay;
+        }
 
         if (anyPressed)
         {
