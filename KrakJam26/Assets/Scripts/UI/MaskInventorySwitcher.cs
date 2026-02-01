@@ -53,6 +53,7 @@ public class MaskInventorySwitcher : MonoBehaviour
 
     private void OnMaskPortraitFadedOut(MaskType type)
     {
+        RefreshButtons();
         _maskPortraitImage.sprite = MaskSystemManager.Instance.MasksData.GetMaskSprite(type);
         _maskPortraitDissolveTween = Tween.MaterialProperty(
             _maskPortraitImage.material,
@@ -74,8 +75,8 @@ public class MaskInventorySwitcher : MonoBehaviour
         do
         {
             _selectedMaskIndex = (_selectedMaskIndex + 1) % count;
-
-            if (_maskInventoryObjects[_selectedMaskIndex].IsUnlocked &&
+            var maskType = _maskInventoryObjects[_selectedMaskIndex].MaskType;
+            if (MaskSystemManager.Instance.IsMaskUnlocked(maskType) &&
                 _selectedMaskIndex != _activeMaskIndex)
             {
                 RefreshButtons();
@@ -90,7 +91,7 @@ public class MaskInventorySwitcher : MonoBehaviour
     {
         var maskObj = _maskInventoryObjects[_selectedMaskIndex];
 
-        if (!maskObj.IsUnlocked)
+        if (!MaskSystemManager.Instance.IsMaskUnlocked(maskObj.MaskType))
             return;
 
         var targetType = maskObj.MaskType;
@@ -106,7 +107,7 @@ public class MaskInventorySwitcher : MonoBehaviour
     {
         index %= _maskInventoryObjects.Length;
 
-        if (!_maskInventoryObjects[index].IsUnlocked)
+        if (!MaskSystemManager.Instance.IsMaskUnlocked(_maskInventoryObjects[index].MaskType))
             return;
 
         _selectedMaskIndex = index;
@@ -125,17 +126,21 @@ public class MaskInventorySwitcher : MonoBehaviour
     {
         var obj = _maskInventoryObjects[index];
 
-        if (!obj.IsUnlocked)
+        if (!MaskSystemManager.Instance.IsMaskUnlocked(obj.MaskType))
         {
+            Debug.Log($"mask {obj.MaskType} locked");
             obj.SetState(MaskInventoryObjectVisual.MaskInventoryState.Locked);
             return;
         }
 
-        obj.SetState(
+        var newState = 
             index == _activeMaskIndex ? MaskInventoryObjectVisual.MaskInventoryState.Wearing :
             index == _selectedMaskIndex ? MaskInventoryObjectVisual.MaskInventoryState.Selected :
-            MaskInventoryObjectVisual.MaskInventoryState.Neutral
-        );
+            MaskInventoryObjectVisual.MaskInventoryState.Neutral; 
+
+        Debug.Log($"mask {obj.MaskType} set to {newState}");
+        
+        obj.SetState(newState);
     }
 
     private void OnDisable()
