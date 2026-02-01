@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DamagingCollider : MonoBehaviour
+public class PlayerDamagingCollider : MonoBehaviour
 {
 	[SerializeField]
 	private int _damage = 10;
