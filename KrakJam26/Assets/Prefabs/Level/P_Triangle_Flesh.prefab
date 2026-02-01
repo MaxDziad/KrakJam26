@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b84290273b982314194b1ce88ae62f9a, type: 3}
       propertyPath: m_Name
-      value: triagnle flesh
+      value: P_Triangle_Flesh
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

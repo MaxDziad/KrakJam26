@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Floor_Slop
       objectReference: {fileID: 0}
+    - target: {fileID: 3423523427308206602, guid: abea73cd2e9d6af42b74296e56655923, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c1947d417dd9954489f85b036fb067e1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
