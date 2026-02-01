@@ -20208,10 +20208,6 @@ PrefabInstance:
       propertyPath: transitionFade
       value: 
       objectReference: {fileID: 1570014651}
-    - target: {fileID: 4098294197919565339, guid: c8c343ce9a5c6c04cbf3fa91ccf7c8f5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5145686532356336331, guid: c8c343ce9a5c6c04cbf3fa91ccf7c8f5, type: 3}
       propertyPath: m_Name
       value: P_ChangeSceneBackToHUB

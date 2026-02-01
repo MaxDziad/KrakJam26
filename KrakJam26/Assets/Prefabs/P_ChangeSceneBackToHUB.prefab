@@ -142,11 +142,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2829058350428786249, guid: 8bbff97e22cfa8246a518b03cf885a30, type: 3}
       propertyPath: sceneName
-      value: GameplayScene
+      value: Dungeon_02
       objectReference: {fileID: 0}
     - target: {fileID: 2829058350428786249, guid: 8bbff97e22cfa8246a518b03cf885a30, type: 3}
       propertyPath: interactionPrompt
-      value: Go Back
+      value: Proceed
       objectReference: {fileID: 0}
     - target: {fileID: 8059252061840889998, guid: 8bbff97e22cfa8246a518b03cf885a30, type: 3}
       propertyPath: m_LocalPosition.x
