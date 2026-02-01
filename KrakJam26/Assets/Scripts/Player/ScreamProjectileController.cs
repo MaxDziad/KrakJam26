@@ -2,34 +2,31 @@ using UnityEngine;
 
 public class ScreamProjectile : MonoBehaviour
 {
-    [SerializeField] 
-    private float lifetime = 5f;
+	[SerializeField]
+	private float lifetime = 5f;
 
-    [SerializeField] 
-    private LayerMask targeLayer;
+	private Vector3 direction;
+	private float speed;
 
-    private Vector3 direction;
-    private float speed;
+	public void Initialize(Vector3 dir, float spd)
+	{
+		direction = dir;
+		speed = spd;
 
-    public void Initialize(Vector3 dir, float spd)
-    {
-        Debug.Log("szczał!!");
-        direction = dir;
-        speed = spd;
+		Destroy(gameObject, lifetime);
+	}
 
-        Destroy(gameObject, lifetime);
-    }
+	private void FixedUpdate()
+	{
+		transform.position += direction * speed * Time.deltaTime;
+	}
 
-    private void FixedUpdate()
-    {
-        transform.position += direction * speed * Time.deltaTime;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == targeLayer)
-        {
-            Destroy(gameObject);
-        }
-    }
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.TryGetComponent<ScreamDamageReceiver>(out var damageReceiver))
+		{
+			damageReceiver.ReceiveDamage();
+			Destroy(gameObject);
+		}
+	}
 }

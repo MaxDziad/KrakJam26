@@ -12,6 +12,9 @@ public class MasksData : ScriptableObject
 	[SerializeField]
 	private Sprite _silentMaskSprite;
 
+	[SerializeField]
+	private Sprite _unknownMaskSprite;
+
 	public Sprite GetMaskSprite(MaskType type)
 	{
 		return type switch
@@ -19,7 +22,7 @@ public class MasksData : ScriptableObject
 			MaskType.Deaf => _deafMaskSprite,
 			MaskType.Blind => _blindMaskSprite,
 			MaskType.Silent => _silentMaskSprite,
-			_ => null,
+			_ => _unknownMaskSprite,
 		};
 	}
 }

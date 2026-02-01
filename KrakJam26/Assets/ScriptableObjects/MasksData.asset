@@ -15,3 +15,4 @@ MonoBehaviour:
   _deafMaskSprite: {fileID: 21300000, guid: 413f198f56a2708cda9fde3feb261665, type: 3}
   _blindMaskSprite: {fileID: 21300000, guid: 23c1b56dcb57dc498b4c8d2924abd42f, type: 3}
   _silentMaskSprite: {fileID: 21300000, guid: 5b299fcf308766303938dc7528cbdc8c, type: 3}
+  _unknownMaskSprite: {fileID: 21300000, guid: 731ac268a158e87e49e3c4355bb09098, type: 3}
