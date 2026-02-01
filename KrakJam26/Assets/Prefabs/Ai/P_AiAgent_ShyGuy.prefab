@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: managedReferences[6327293190125650353].m_Value
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3850130033124404859, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: _activableOnHit
+      value: 
+      objectReference: {fileID: 8295642990356696210}
     - target: {fileID: 7455647099478455317, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_Name
       value: P_AiAgent_ShyGuy
@@ -105,3 +109,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+--- !u!114 &8295642990356696210 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4727160542561934174, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+  m_PrefabInstance: {fileID: 3655291424838916044}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7d9fc2ce9a50a479b93967830889f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActivableKillAi
