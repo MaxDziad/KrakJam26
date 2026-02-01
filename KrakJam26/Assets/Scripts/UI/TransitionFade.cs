@@ -11,8 +11,16 @@ public class TransitionFade : MonoBehaviour
 
     [SerializeField] private Color fadeColor = Color.black;
 
+    [SerializeField] private bool fadeInOnStart = false;
+
     private Tween fadeTween;
 
+    private static TransitionFade _instance;
+
+    private void Awake()
+    {
+        _instance = this;
+    }
 
     private Tween FadeOutTween()
     {
@@ -36,14 +44,41 @@ public class TransitionFade : MonoBehaviour
         );
     }
 
-    public void Transition(Action onFadedOut = null)
+    public static void Transition(Action onFadedOut = null)
     {
-        fadeTween.Stop();
-        
-        fadeTween = FadeOutTween().OnComplete(() =>
+        if(_instance == null)
         {
-            fadeTween = FadeInTween();
+            Debug.LogWarning("No TransitionFade instance found in the scene to perform transition.");
+            onFadedOut?.Invoke();
+            return;
+        }
+
+        _instance.fadeTween.Stop();
+        
+        _instance.fadeTween = _instance.FadeOutTween().OnComplete(() =>
+        {
+            _instance.fadeTween = _instance.FadeInTween();
             onFadedOut?.Invoke();
         });
+    }
+
+    private void Start()
+    {
+        if (fadeInOnStart)
+        {
+            Color fadeOutOpaqueColor = fadeColor;
+            fadeOutOpaqueColor.a = 1.0f;
+            blackFadeScreen.color = fadeOutOpaqueColor;
+
+            fadeTween = FadeInTween();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_instance == this)
+        {
+            _instance = null;
+        }
     }
 }

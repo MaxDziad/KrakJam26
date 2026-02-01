@@ -30,7 +30,10 @@ public class MaskSystemManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         maskVisuals = GetComponent<MaskVisuals>();
+    }
 
+    private void Start()
+    {
         TryChangeMask(startingMask, true);
     }
 
