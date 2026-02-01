@@ -9,7 +9,7 @@ public class AiAgentBase : MonoBehaviour
 	private BehaviorGraphAgent _behaviorGraphAgent;
 
 	public PlayerController TargetPlayer { get; private set; }
-	public AiAgentType AgentType => AgentType;
+	public AiAgentType AgentType => _agentType;
 
 	private void Awake()
 	{
