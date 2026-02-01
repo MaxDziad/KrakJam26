@@ -40,7 +40,11 @@ public class Interactor : MonoBehaviour
 
 	private void OnInteractableDisabled()
 	{
-		currentInteractable.OnDisabledEvent -= OnInteractableDisabled;
+		if (currentInteractable != null)
+		{
+			currentInteractable.OnDisabledEvent -= OnInteractableDisabled;
+		}
+
 		OnInteractableLostEvent?.Invoke(currentInteractable);
 		currentInteractable = null;
 	}

@@ -10,7 +10,13 @@ public class TimerInteractable : MonoBehaviour, IInteractable
 	private ActivableBase _activableOnStart;
 
 	[SerializeField]
+	private ActivableBase _toDeactivateOnStart;
+
+	[SerializeField]
 	private ActivableBase _activableOnEnd;
+
+	[SerializeField]
+	private ActivableBase _toDeactivateOnEnd;
 
 	[SerializeField]
 	private float _timerDuration = 60f;
@@ -27,12 +33,14 @@ public class TimerInteractable : MonoBehaviour, IInteractable
 		TimerSystem.Instance.OnTimerEnd += OnTimerEnd;
 		TimerSystem.Instance.StartTimer(_timerDuration);
 		_activableOnStart?.Activate();
+		_toDeactivateOnStart?.Deactivate();
 	}
 
 	private void OnTimerEnd()
 	{
 		TimerSystem.Instance.OnTimerEnd -= OnTimerEnd;
 		_activableOnEnd?.Activate();
+		_toDeactivateOnEnd?.Deactivate();
 	}
 
 	private void OnDisable()
