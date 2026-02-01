@@ -406,8 +406,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -57.323}
-  m_SizeDelta: {x: 490, y: 104.646}
+  m_AnchoredPosition: {x: 250, y: -81.4}
+  m_SizeDelta: {x: 405.71, y: 115.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2389712303919627126
 CanvasRenderer:
@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.103773594, g: 0.01517444, b: 0.01517444, a: 0}
+  m_Color: {r: 0.16874552, g: 0.054955505, b: 0.054955505, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -460,12 +460,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
+    m_Left: 10
+    m_Right: 10
+    m_Top: 10
+    m_Bottom: 10
   m_ChildAlignment: 3
-  m_Spacing: 10
+  m_Spacing: 30
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -970,15 +970,15 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7180592807631921921}
+  - {fileID: 1321006140377829308}
   - {fileID: 7527391328247294282}
   - {fileID: 6333670159606494327}
-  - {fileID: 1321006140377829308}
   - {fileID: 3817937076111287524}
   m_Father: {fileID: 8368294255161231850}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 3792.1736, y: -540}
+  m_AnchoredPosition: {x: 4107.9688, y: -540}
   m_SizeDelta: {x: 500, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3107434786128715617
@@ -1269,7 +1269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23c1b56dcb57dc498b4c8d2924abd42f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 731ac268a158e87e49e3c4355bb09098, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
