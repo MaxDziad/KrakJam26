@@ -8,6 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 885099805559882845, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1232552086, guid: b4eba6d3d4507fc6aad6918fb89bc137, type: 3}
+    - target: {fileID: 2154763930659568173, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154763930659568173, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154763930659568173, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2154763930659568173, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -48,13 +64,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3469370176099166038, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469370176099166038, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469370176099166038, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3573440252714923063, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_Graph
       value: 
       objectReference: {fileID: 8278590886462119081, guid: b4d85c357be674941b2418b3aac0a763, type: 2}
+    - target: {fileID: 3573440252714923063, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: managedReferences[6327293190125650353].m_Value
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748358993457016079, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7455647099478455317, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_Name
-      value: P_AiAgent_ShyGuy
+      value: P_AiAgent_Ghost
+      objectReference: {fileID: 0}
+    - target: {fileID: 7884610903262244232, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 1f06e049817e62b44892d373ee51ce9e, type: 2}
+    - target: {fileID: 8853191199013052734, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9223122562938206795, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_IsActive
