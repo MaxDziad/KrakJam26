@@ -5,6 +5,8 @@ using UnityEngine.Rendering.Universal;
 
 public class MaskVisuals : MonoBehaviour
 {
+    [Header("Visual Settings")]
+    [SerializeField] private float visibilityAffectOnSoundWaves = 0.9f;
     [Header("Tween Settings")]
     [SerializeField] private TweenSettings blindTweenSettings;
     [SerializeField] private TweenSettings deafTweenSettings;
@@ -40,7 +42,8 @@ public class MaskVisuals : MonoBehaviour
 
     private void Update()
     {
-        SoundWaveVFX.GlobalOpacity = 1.0f - deafVisualState;
+        float maxSoundWaveOpacity = Mathf.Lerp(1.0f - visibilityAffectOnSoundWaves, 1.0f, blindVisualState);
+        SoundWaveVFX.GlobalOpacity = Mathf.Min(maxSoundWaveOpacity, 1.0f - deafVisualState);
         blindnessRenderPass.passMaterial.SetFloat("_Value", blindVisualState);
     }
 
