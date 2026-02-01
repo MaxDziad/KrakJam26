@@ -13,11 +13,8 @@ public class MaskInventoryObjectVisual : MonoBehaviour
 
     private Image _maskImage;
 
-    private bool _isUnlocked = false;
-
     public MaskType MaskType => _maskType;
     public Image MaskImage => _maskImage;
-    public bool IsUnlocked => _isUnlocked;
 
     private void Awake()
     {
@@ -32,17 +29,8 @@ public class MaskInventoryObjectVisual : MonoBehaviour
         _maskImage.sprite = maskSprite;
     }
 
-    public void Unlock()
-    {
-        _isUnlocked = true;
-        SetState(MaskInventoryState.Neutral);
-    }
-
     public void SetState(MaskInventoryState state)
     {
-        if (!_isUnlocked && state != MaskInventoryState.Locked)
-            state = MaskInventoryState.Locked;
-
         _maskImage.color = state switch
         {
             MaskInventoryState.Selected => selectedStateColor,
