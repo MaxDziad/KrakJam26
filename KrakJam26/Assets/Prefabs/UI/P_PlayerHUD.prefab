@@ -1054,7 +1054,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1726.738, y: -540}
+  m_AnchoredPosition: {x: 1668.9698, y: -540}
   m_SizeDelta: {x: 500, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3107434786128715617
@@ -1820,6 +1820,7 @@ GameObject:
   - component: {fileID: 7180592807631921921}
   - component: {fileID: 4656515688310434197}
   - component: {fileID: 3679322625139605796}
+  - component: {fileID: 7494602222299146289}
   m_Layer: 7
   m_Name: PortraitPanel
   m_TagString: Untagged
@@ -1867,7 +1868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1884,6 +1885,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7494602222299146289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8322802765138851862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43090f68bf158d547bd65a463bc91ece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActivablePlayerHudDamage
+  _image: {fileID: 3679322625139605796}
+  _damagedColor: {r: 1, g: 0, b: 0, a: 1}
+  _flashInDuration: 0.05
+  _fadeOutDuration: 1.5
 --- !u!1 &8610133702443108724
 GameObject:
   m_ObjectHideFlags: 0

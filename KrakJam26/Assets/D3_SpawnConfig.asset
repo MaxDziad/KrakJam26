@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WorldAiSpawnConfig
   _spawnableAiTypes:
   - AiType: 0
-    SpawnProbability: 40
+    SpawnProbability: 50
     MaxSpawnedAtATime: 3
   - AiType: 1
-    SpawnProbability: 40
+    SpawnProbability: 50
     MaxSpawnedAtATime: 3
-  - AiType: 2
-    SpawnProbability: 20
-    MaxSpawnedAtATime: 1
   _cooldownBetweenSpawns: 5
   _numberOfAgentSpawnedPerCycle: 2

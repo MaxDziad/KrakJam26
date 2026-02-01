@@ -15,6 +15,6 @@ MonoBehaviour:
   _spawnableAiTypes:
   - AiType: 0
     SpawnProbability: 100
-    MaxSpawnedAtATime: 2
+    MaxSpawnedAtATime: 4
   _cooldownBetweenSpawns: 10
   _numberOfAgentSpawnedPerCycle: 2

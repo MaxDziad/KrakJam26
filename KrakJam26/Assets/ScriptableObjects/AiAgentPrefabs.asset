@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AiAgentPrefabs
   m_EditorClassIdentifier: Assembly-CSharp::AiAgentPrefabs
   _shyGuyPrefab: {fileID: 2122977521895977733, guid: 1e0f18fb13eb1d649a9aa948a757f23b, type: 3}
-  _invisibleGuyPrefab: {fileID: 6359917859666500718, guid: 83bf567a139220a40b6205c8eb9bad94, type: 3}
+  _invisibleGuyPrefab: {fileID: 2122977521895977733, guid: 1e0f18fb13eb1d649a9aa948a757f23b, type: 3}
   _ghostPrefab: {fileID: 2122977521895977733, guid: 9a6000f4e9a317d479289029072cd728, type: 3}
