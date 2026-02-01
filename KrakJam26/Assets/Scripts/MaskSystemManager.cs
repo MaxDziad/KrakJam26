@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MaskSystemManager : MonoBehaviour
@@ -10,7 +11,8 @@ public class MaskSystemManager : MonoBehaviour
     public event Action<MaskType> OnMaskChangedEvent;
 
     [SerializeField] private MasksData masksData;
-    [SerializeField] private HashSet<MaskType> unlockedTypes = new();
+    [SerializeField] private List<MaskType> unlockedTypes = new();
+    [SerializeField] private MaskType startingMask = MaskType.Silent;
 
     private MaskVisuals maskVisuals;
 
@@ -28,22 +30,29 @@ public class MaskSystemManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         maskVisuals = GetComponent<MaskVisuals>();
+
+        TryChangeMask(startingMask, true);
     }
 
-    public bool TryChangeMask(MaskType newMask)
+    public bool TryChangeMask(MaskType newMask, bool force = false)
     {
-        if (newMask == CurrentMask || maskVisuals.IsChangeInProgress)
-            return false;
-
-        if (!IsMaskUnlocked(newMask))
+        if (!force)
         {
-            Debug.Log($"mask locked");
-            return false;
-        }
+            if (newMask == CurrentMask || maskVisuals.IsChangeInProgress)
+            {
+                return false;
+            }
 
+            if (!IsMaskUnlocked(newMask))
+            {
+                Debug.Log($"mask locked");
+                return false;
+            }
+        }
+        
         OnMaskChangeStartedEvent?.Invoke(newMask);
 
-        maskVisuals.StartVisualChange(newMask, () =>
+        maskVisuals.StartVisualChange(newMask, force, () =>
         {
             CurrentMask = newMask;
             OnMaskChangedEvent?.Invoke(newMask);

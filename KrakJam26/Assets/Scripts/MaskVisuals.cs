@@ -47,7 +47,7 @@ public class MaskVisuals : MonoBehaviour
         blindnessRenderPass.passMaterial.SetFloat("_Value", blindVisualState);
     }
 
-    public void StartVisualChange(MaskType maskType, Action onComplete = null)
+    public void StartVisualChange(MaskType maskType, bool force = false, Action onComplete = null)
     {
         targetMaskType = maskType;
 
@@ -60,10 +60,15 @@ public class MaskVisuals : MonoBehaviour
             .Group(Tween.Custom(new TweenSettings<float>(blindVisualState, 1.0f, blindTweenSettings), value => blindVisualState = value))
             .Group(Tween.Custom(new TweenSettings<float>(deafVisualState, 1.0f, deafTweenSettings), value => deafVisualState = value))
             .Group(Tween.Custom(new TweenSettings<float>(muteVisualState, 1.0f, muteTweenSettings), value => muteVisualState = value))
-        .OnComplete(() => OnVisualMidpointReached(onComplete)); 
+        .OnComplete(() => OnVisualMidpointReached(force, onComplete)); 
+
+        if (force)
+        {
+            visualSequence.Complete();
+        }
     }
 
-    private void OnVisualMidpointReached(Action onComplete = null)
+    private void OnVisualMidpointReached(bool force = false, Action onComplete = null)
     {
         var maskTexture = MaskSystemManager.Instance.MasksData.GetMaskSprite(targetMaskType).texture;
         blindnessRenderPass.passMaterial.SetTexture("_Mask", maskTexture);
@@ -77,6 +82,11 @@ public class MaskVisuals : MonoBehaviour
             .Group(Tween.Custom(new TweenSettings<float>(1.0f, deafTarget, deafTweenSettings), value => deafVisualState = value))
             .Group(Tween.Custom(new TweenSettings<float>(1.0f, muteTarget, muteTweenSettings), value => muteVisualState = value))
         .OnComplete(onComplete);
+
+        if (force)
+        {
+            visualSequence.Complete();
+        }
     }
 
     private float GetBlindTarget(MaskType maskType)
