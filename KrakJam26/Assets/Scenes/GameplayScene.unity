@@ -461,7 +461,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2349481089346167090, guid: 516a6ce8178f02c4ea36489b0b389ed7, type: 3}
       propertyPath: m_Name
-      value: MaskSilentPickup
+      value: MaskSilentPickup-ButNotReallySilentBecauseWeChangedItSoNowItsDeafMask
       objectReference: {fileID: 0}
     - target: {fileID: 4312961403289100439, guid: 516a6ce8178f02c4ea36489b0b389ed7, type: 3}
       propertyPath: _activableOnPickup
@@ -992,7 +992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310bd1c673d76e6e1a1daecc7334f10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FirstMaskPickupItem
-  maskType: 1
+  maskType: 2
   _activableOnPickup: {fileID: 332675833}
   delayBetweenEachLine: 2
   dialogueLines:
@@ -2242,7 +2242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4187993581542405448, guid: 917ac9f2d6f4f0e409e81d0f419db199, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2375.0354
+      value: 2055.1482
       objectReference: {fileID: 0}
     - target: {fileID: 4187993581542405448, guid: 917ac9f2d6f4f0e409e81d0f419db199, type: 3}
       propertyPath: m_AnchoredPosition.y
