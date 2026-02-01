@@ -17,4 +17,4 @@ MonoBehaviour:
     SpawnProbability: 100
     MaxSpawnedAtATime: 1
   _cooldownBetweenSpawns: 5
-  _numberOfAgentSpawnedPerCycle: 1
+  _numberOfAgentSpawnedPerCycle: 2
