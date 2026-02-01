@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c1bc2c83d20de2e4bbcf9c419f47b346, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c1947d417dd9954489f85b036fb067e1, type: 2}
     - target: {fileID: 919132149155446097, guid: c1bc2c83d20de2e4bbcf9c419f47b346, type: 3}
       propertyPath: m_Name
       value: P_Elevator
