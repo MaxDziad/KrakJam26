@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1232552086, guid: b4eba6d3d4507fc6aad6918fb89bc137, type: 3}
+    - target: {fileID: 1968916399093536511, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: _activateOnDamage
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2154763930659568173, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -87,14 +91,14 @@ PrefabInstance:
     - target: {fileID: 3850130033124404859, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: _activableOnHit
       value: 
-      objectReference: {fileID: 8295642990356696210}
+      objectReference: {fileID: 0}
     - target: {fileID: 4385207041762057216, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_WalkableMask
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6748358993457016079, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6876533149996227503, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_IsActive
@@ -121,14 +125,3 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
---- !u!114 &8295642990356696210 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4727160542561934174, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
-  m_PrefabInstance: {fileID: 3655291424838916044}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d7d9fc2ce9a50a479b93967830889f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ActivableKillAi
