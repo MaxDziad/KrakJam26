@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2399a5f2917c89042886d9425a1ef258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AiAgentSystemManager
+  _aiAgentPrefabs: {fileID: 11400000, guid: 38f1699e00a58fe4ca3af50e1c77fcfa, type: 2}
 --- !u!1 &6958596610231485098
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6964677988895398677, guid: 2180cc194f114434fa59a080303f0cde, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 41
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6964677988895398677, guid: 2180cc194f114434fa59a080303f0cde, type: 3}
       propertyPath: m_LocalPosition.y
@@ -453,7 +454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6964677988895398677, guid: 2180cc194f114434fa59a080303f0cde, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -24.8
+      value: -76.55
       objectReference: {fileID: 0}
     - target: {fileID: 6964677988895398677, guid: 2180cc194f114434fa59a080303f0cde, type: 3}
       propertyPath: m_LocalRotation.w
