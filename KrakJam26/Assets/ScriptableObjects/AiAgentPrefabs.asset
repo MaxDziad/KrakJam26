@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d75a7f2da18a6a941bc92fc2282c2ad5, type: 3}
+  m_Name: AiAgentPrefabs
+  m_EditorClassIdentifier: Assembly-CSharp::AiAgentPrefabs
+  _shyGuyPrefab: {fileID: 2122977521895977733, guid: 1e0f18fb13eb1d649a9aa948a757f23b, type: 3}
+  _invisibleGuyPrefab: {fileID: 6359917859666500718, guid: 83bf567a139220a40b6205c8eb9bad94, type: 3}
+  _ghostPrefab: {fileID: 2122977521895977733, guid: 9a6000f4e9a317d479289029072cd728, type: 3}
