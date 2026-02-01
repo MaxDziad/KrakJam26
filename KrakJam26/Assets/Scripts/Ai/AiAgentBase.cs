@@ -17,15 +17,47 @@ public class AiAgentBase : MonoBehaviour
 	private void Awake()
 	{
 		_behaviorGraphAgent = GetComponent<BehaviorGraphAgent>();
-		
 	}
 
 	private void Start()
 	{
 		TargetPlayer = PlayerSystemManager.Instance.PlayerController;
+		InitializeBlackboard();
+		MaskSystemManager.Instance.OnMaskChangedEvent += OnMaskChanged;
 		AiAgentSystemManager.Instance.RegisterAgent(this);
-		_behaviorGraphAgent.SetVariableValue("PlayerPawn", TargetPlayer.gameObject);
 		_behaviorGraphAgent.Start();
+	}
+
+	private void InitializeBlackboard()
+	{
+		_behaviorGraphAgent.SetVariableValue("PlayerPawn", TargetPlayer.gameObject);
+		OnMaskChanged(MaskSystemManager.Instance.CurrentMask);
+	}
+
+	private void OnMaskChanged(MaskType type)
+	{
+		switch (type)
+		{
+			case MaskType.Blind:
+				ResetBlackboardVariables();
+				_behaviorGraphAgent.SetVariableValue("IsPlayerBlind", true);
+				break;
+			case MaskType.Deaf:
+				ResetBlackboardVariables();
+				_behaviorGraphAgent.SetVariableValue("IsPlayerDeaf", true);
+				break;
+			case MaskType.Silent:
+				ResetBlackboardVariables();
+				_behaviorGraphAgent.SetVariableValue("IsPlayerSilent", true);
+				break;
+		}
+	}
+	
+	private void ResetBlackboardVariables()
+	{
+		_behaviorGraphAgent.SetVariableValue("IsPlayerBlind", false);
+		_behaviorGraphAgent.SetVariableValue("IsPlayerDeaf", false);
+		_behaviorGraphAgent.SetVariableValue("IsPlayerSilent", false);
 	}
 
 	public void TriggerDeath()
@@ -37,6 +69,7 @@ public class AiAgentBase : MonoBehaviour
 
 	private void OnDestroy()
 	{
+		MaskSystemManager.Instance.OnMaskChangedEvent -= OnMaskChanged;
 		AiAgentSystemManager.Instance.UnregisterAgent(this);
 	}
 }

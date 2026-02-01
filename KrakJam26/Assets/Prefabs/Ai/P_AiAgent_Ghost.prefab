@@ -79,14 +79,18 @@ PrefabInstance:
     - target: {fileID: 3573440252714923063, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_Graph
       value: 
-      objectReference: {fileID: 8278590886462119081, guid: b4d85c357be674941b2418b3aac0a763, type: 2}
+      objectReference: {fileID: 8278590886462119081, guid: 8d2f5bcf93c561d4abaf850134e60478, type: 2}
     - target: {fileID: 3573440252714923063, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: managedReferences[6327293190125650353].m_Value
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3850130033124404859, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+      propertyPath: _activableOnHit
+      value: 
+      objectReference: {fileID: 8295642990356696210}
     - target: {fileID: 6748358993457016079, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7455647099478455317, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
       propertyPath: m_Name
@@ -109,3 +113,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+--- !u!114 &8295642990356696210 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4727160542561934174, guid: 20f5185d3d0a74446897ed0b2e92c8ee, type: 3}
+  m_PrefabInstance: {fileID: 3655291424838916044}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7d9fc2ce9a50a479b93967830889f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActivableKillAi
