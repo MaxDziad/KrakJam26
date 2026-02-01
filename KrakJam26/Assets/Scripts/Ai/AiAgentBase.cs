@@ -1,5 +1,6 @@
 using Unity.Behavior;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AiAgentBase : MonoBehaviour
 {
@@ -7,13 +8,16 @@ public class AiAgentBase : MonoBehaviour
 	private AiAgentType _agentType;
 
 	private BehaviorGraphAgent _behaviorGraphAgent;
+	private NavMeshAgent _navmeshAgent;
 
 	public PlayerController TargetPlayer { get; private set; }
 	public AiAgentType AgentType => _agentType;
+	public NavMeshAgent NavmeshAgent => _navmeshAgent ??= GetComponent<NavMeshAgent>();
 
 	private void Awake()
 	{
 		_behaviorGraphAgent = GetComponent<BehaviorGraphAgent>();
+		
 	}
 
 	private void Start()
