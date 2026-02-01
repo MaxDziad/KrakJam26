@@ -115,8 +115,8 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WaveDelta: 0.5
-    - _WaveInnerSize: 6.6
-    - _WaveOuterSize: 0.22
+    - _WaveInnerSize: 4
+    - _WaveOuterSize: 0.2
     - _WavePower: 26.86
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1

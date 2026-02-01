@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0ec52a7b6481d0870977b7cd90f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaskVisuals
-  visibilityAffectOnSoundWaves: 0.9
+  visibilityAffectOnSoundWaves: 0.98
   deafnessCutoffFrequency: 500
   blindTweenSettings:
     duration: 0.4
@@ -549,7 +549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6964677988895398677, guid: 2180cc194f114434fa59a080303f0cde, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 6964677988895398677, guid: 2180cc194f114434fa59a080303f0cde, type: 3}
       propertyPath: m_LocalPosition.y
@@ -557,7 +557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6964677988895398677, guid: 2180cc194f114434fa59a080303f0cde, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -76.55
+      value: -24.8
       objectReference: {fileID: 0}
     - target: {fileID: 6964677988895398677, guid: 2180cc194f114434fa59a080303f0cde, type: 3}
       propertyPath: m_LocalRotation.w
