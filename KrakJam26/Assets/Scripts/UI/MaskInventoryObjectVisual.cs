@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MaskInventoryObject : MonoBehaviour
+public class MaskInventoryObjectVisual : MonoBehaviour
 {
     [SerializeField] private MaskType _maskType;
 

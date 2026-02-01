@@ -9,7 +9,7 @@ public class MaskInventorySwitcher : MonoBehaviour
     private PlayerController _playerController;
 
     [SerializeField]
-    private MaskInventoryObject[] _maskInventoryObjects;
+    private MaskInventoryObjectVisual[] _maskInventoryObjects;
 
     [SerializeField]
     private Image _maskPortraitImage;
@@ -127,14 +127,14 @@ public class MaskInventorySwitcher : MonoBehaviour
 
         if (!obj.IsUnlocked)
         {
-            obj.SetState(MaskInventoryObject.MaskInventoryState.Locked);
+            obj.SetState(MaskInventoryObjectVisual.MaskInventoryState.Locked);
             return;
         }
 
         obj.SetState(
-            index == _activeMaskIndex ? MaskInventoryObject.MaskInventoryState.Wearing :
-            index == _selectedMaskIndex ? MaskInventoryObject.MaskInventoryState.Selected :
-            MaskInventoryObject.MaskInventoryState.Neutral
+            index == _activeMaskIndex ? MaskInventoryObjectVisual.MaskInventoryState.Wearing :
+            index == _selectedMaskIndex ? MaskInventoryObjectVisual.MaskInventoryState.Selected :
+            MaskInventoryObjectVisual.MaskInventoryState.Neutral
         );
     }
 
