@@ -15,6 +15,7 @@ public class AiSpawner : MonoBehaviour
 
 	public void SpawnAiAgent(AiAgentBase aiAgentPrefab)
 	{
+		Debug.Log("spawn nastąpił");
 		Instantiate(aiAgentPrefab, transform.position, transform.rotation);
 	}
 
